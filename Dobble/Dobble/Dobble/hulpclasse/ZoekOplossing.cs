@@ -1,27 +1,27 @@
 ﻿using Dobble.Domain;
-using Dobble.ViewModels;
-using FreshMvvm;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Essentials;
-using Xamarin.Forms;
+
 
 namespace Dobble.hulpclasse
 {
+  
     public class Zoekoplossing 
     {
-        public string Oplossing(Card kaart1, Card kaart2)
+        // om oplossing te bepalen
+        #region Oplossing resultaat is het figuur dat matched
+        public string Oplossing(Playground playground)
         {
             string oplossing = "Fout";
-            List<string> list1 = kaart1.picturelist;
-            List<string> list2 = kaart2.picturelist;
+            List<string> list1 = playground.Cards[0].picturelist;
+            List<string> list2 = playground.Cards[1].picturelist;
 
 
-            for (int i = 0; i < kaart1.picturelist.Count; i++)
+            for (int i = 0; i < playground.Cards[0].picturelist.Count; i++)
             {
                 string k1 = list1[i];
-                for (int a = 0; a < kaart2.picturelist.Count; a++)
+                for (int a = 0; a < playground.Cards[1].picturelist.Count; a++)
                 {
                     if (k1 == list2[a])
                     {
@@ -33,18 +33,17 @@ namespace Dobble.hulpclasse
            
             return oplossing;
         }
-        public void  Antwoord(String beeld)
+        #endregion
+        #region Antwoord beoordeeld het antwoord en vergelijkt het met de oplossing 
+        public void  Antwoord(String beeld, string oplossing)
         {
             //  string beeld = image.Source.ToString().Substring(6);
 
             var bestand = new Bestand();
             //string oplossing = bestand.ReadFile("oplossing.txt");
-            string oplossing = Globals.oplossing;
+           // string oplossing = Globals.oplossing;
 
-            string tijd = bestand.ReadFile("tijd.txt");
-            DateTime begintijd = Convert.ToDateTime(tijd);
-          
-            TimeSpan span = (DateTime.Now - begintijd);
+   
             
             var muziek = new Music();
             Globals.aantal_pogingen++;
@@ -97,5 +96,6 @@ namespace Dobble.hulpclasse
             
           
         }
+        #endregion
     }
 }

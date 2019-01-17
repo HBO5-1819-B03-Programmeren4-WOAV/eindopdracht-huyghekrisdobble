@@ -1,6 +1,7 @@
 using Dobble.Domain;
 using Dobble.hulpclasse;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -15,17 +16,17 @@ namespace TestDobble
             var kaarten = new Cards();
             var oplos = new Zoekoplossing();
             bool actual = true;
-            for (int a = 0; a < kaarten.list.Count; a++)
+            for (int a = 0; a < kaarten.lijst.Count; a++)
             {
-                for (int i = 0; i < kaarten.list.Count; i++) //
+                for (int i = 0; i < kaarten.lijst.Count; i++) //
                 {
                     int kaartnr1 = a;
                     int kaartnr2 = i;
                     Playground playground = new Playground();
 
-                    playground.card1 = kaarten.list.ElementAt(kaartnr1);
-                    playground.card2 = kaarten.list.ElementAt(kaartnr2);
-                    string oplossing = oplos.Oplossing(playground.card1, playground.card2);
+                    playground.Cards = new List<Card> { kaarten.lijst.ElementAt(a), kaarten.lijst.ElementAt(i) };
+
+                    string oplossing = oplos.Oplossing(playground);
 
 
                     if (oplossing == "Fout")

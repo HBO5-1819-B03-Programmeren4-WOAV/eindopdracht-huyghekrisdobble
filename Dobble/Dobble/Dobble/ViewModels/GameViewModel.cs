@@ -18,7 +18,12 @@ namespace Dobble.ViewModels
     public class GameViewModel : FreshBasePageModel, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
+        Playground playground = new Playground();
+        public string oplossing;
+        //lijst met vast aantal kaarten
+        Cards cards = new Cards();
+
+        #region databinding MvvM
 
         private string figur1;
         public string Figur1
@@ -360,7 +365,9 @@ namespace Dobble.ViewModels
                 return _Score;
             }
         }
-        
+        #endregion
+
+        #region als op een figuur geklikt wordt komt dit in werking
         public ICommand KlikCommand
         {
             get
@@ -371,29 +378,26 @@ namespace Dobble.ViewModels
         public void Klik(string figuur)
         {
             Zoekoplossing zoekoplossing = new Zoekoplossing();
+            oplossing = zoekoplossing.Oplossing(playground);
             int x = Int32.Parse(figuur);
           
             for (int i = 0 ; i <= 16; i++)
             { // print numbers from 1 to 5
                 if (x == i)
                 {
-                    if (i < playground.card1.picturelist.Count())
+                    if (i < playground.Cards[0].picturelist.Count())
                     {
-                        zoekoplossing.Antwoord(playground.card1.picturelist[i]);
+                        zoekoplossing.Antwoord(playground.Cards[0].picturelist[i], oplossing);
                     }
                     else
                     {
-                        zoekoplossing.Antwoord(playground.card2.picturelist[i - playground.card1.picturelist.Count()]);
+                        zoekoplossing.Antwoord(playground.Cards[1].picturelist[i - playground.Cards[0].picturelist.Count()], oplossing);
                     }
                 }
                          
             }
-       
- 
             Score = Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString() + " Score:" + Globals.Totaalscore;
-       
-
-            if (Globals.TeScoren < 1)
+            if (Globals.TeScoren < 0.01)
             {
                 var bestand = new Bestand();
                 int m = 0;
@@ -419,9 +423,8 @@ namespace Dobble.ViewModels
                 {
                     ScoreTekst = Globals.Username + " you did a nice game \n" + Score;
                 }
-                
-
-                CoreMethods.DisplayAlert("Scores", ScoreTekst, "OK");
+    
+               CoreMethods.DisplayAlert("Scores", ScoreTekst, "OK");
                CoreMethods.PopPageModel();
             
             }
@@ -429,28 +432,10 @@ namespace Dobble.ViewModels
             {
                 GetFigInfo();
             }
-            
-            
+                   
         }
-
-
-
-      
-        Playground playground = new Playground();
-
-        Cards cards = new Cards();
-
-
-         
-
-        
-
-
-
-
-        public ICommand VolgendeCommand { get; set; }
-
-
+        #endregion
+        #region Gameviewmodel
 
         public GameViewModel()
         {
@@ -459,26 +444,16 @@ namespace Dobble.ViewModels
             GetFigInfo();
 
         }
-       
-     
+        #endregion
 
-     
-       
-
-
-
+        #region init
         public override void Init(object initData)
         {
-           
-
-            
-         //   string t = figuren.fig1;
-            base.Init(initData);
-
-            
-
-
+           base.Init(initData);
         }
+        #endregion
+        #region Speelveld bepalen figuren toevoegen
+
         public void GetFigInfo()
         {
           
@@ -494,14 +469,14 @@ namespace Dobble.ViewModels
             
                 card2random = rnd.Next(0, cards.lijst.Count - 1);
             }
- 
+
 
             ////new
-            playground.card1 = cards.lijst.ElementAt(card1random);
-            playground.card2 = cards.lijst.ElementAt(card2random);
+           
+            playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random)};
 
-            var oplos = new Zoekoplossing();
-            Globals.oplossing = oplos.Oplossing(playground.card1, playground.card2);
+
+            
            
             string basis = Device.RuntimePlatform == Device.Android ? "a" : "Images/a";
            // string basis = "Images/a";
@@ -513,33 +488,27 @@ namespace Dobble.ViewModels
 
          
 
-            Figur1 = basis + playground.card1.picturelist[0] + achtervoegsel;
-            Figur2 = basis + playground.card1.picturelist[1] + achtervoegsel;
-            Figur3 = basis + playground.card1.picturelist[2] + achtervoegsel;
-            Figur4 = basis + playground.card1.picturelist[3] + achtervoegsel;
-            Figur5 = basis + playground.card1.picturelist[4] + achtervoegsel;
-            Figur6 = basis + playground.card1.picturelist[5] + achtervoegsel;
-            Figur7 = basis + playground.card1.picturelist[6] + achtervoegsel;
-            Figur8 = basis + playground.card1.picturelist[7] + achtervoegsel;
-            Figur9 = basis + playground.card2.picturelist[0] + achtervoegsel;
-            Figur10 = basis + playground.card2.picturelist[1] + achtervoegsel;
-            Figur11 = basis + playground.card2.picturelist[2] + achtervoegsel;
-            Figur12 = basis + playground.card2.picturelist[3] + achtervoegsel;
-            Figur13 = basis + playground.card2.picturelist[4] + achtervoegsel;
-            Figur14 = basis + playground.card2.picturelist[5] + achtervoegsel;
-            Figur15 = basis + playground.card2.picturelist[6] + achtervoegsel;
-            Figur16 = basis + playground.card2.picturelist[7] + achtervoegsel;
+            Figur1 = basis + playground.Cards[0].picturelist[0] + achtervoegsel;
+            Figur2 = basis + playground.Cards[0].picturelist[1] + achtervoegsel;
+            Figur3 = basis + playground.Cards[0].picturelist[2] + achtervoegsel;
+            Figur4 = basis + playground.Cards[0].picturelist[3] + achtervoegsel;
+            Figur5 = basis + playground.Cards[0].picturelist[4] + achtervoegsel;
+            Figur6 = basis + playground.Cards[0].picturelist[5] + achtervoegsel;
+            Figur7 = basis + playground.Cards[0].picturelist[6] + achtervoegsel;
+            Figur8 = basis + playground.Cards[0].picturelist[7] + achtervoegsel;
+            Figur9 = basis + playground.Cards[1].picturelist[0] + achtervoegsel;
+            Figur10 = basis + playground.Cards[1].picturelist[1] + achtervoegsel;
+            Figur11 = basis + playground.Cards[1].picturelist[2] + achtervoegsel;
+            Figur12 = basis + playground.Cards[1].picturelist[3] + achtervoegsel;
+            Figur13 = basis + playground.Cards[1].picturelist[4] + achtervoegsel;
+            Figur14 = basis + playground.Cards[1].picturelist[5] + achtervoegsel;
+            Figur15 = basis + playground.Cards[1].picturelist[6] + achtervoegsel;
+            Figur16 = basis + playground.Cards[1].picturelist[7] + achtervoegsel;
 
-
-
-            var bewaar = new Bestand();
-         //   oplossing = basis + oplossing + achtervoegsel;
-          //  Globals.oplossing = oplossing;
-            string tijd = DateTime.Now.ToString();
           
         }
-       
-       
-        
+        #endregion
+
+
     }
 }

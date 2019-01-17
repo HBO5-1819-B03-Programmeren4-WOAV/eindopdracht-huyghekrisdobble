@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -8,7 +7,7 @@ namespace Dobble.hulpclasse
     public class Bestand
     {
         static string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        // bestand maken of overschrijven met tekst
+        #region bestand maken of overschrijven met tekst
         public void Save(string tekst, string bestandsnaam)
         {
 
@@ -20,7 +19,8 @@ namespace Dobble.hulpclasse
             fs.Close();
 
         }
-        // leegmaken van bestand
+        #endregion
+        #region leegmaken van bestand
         public void Delete (string bestandsnaam)
         {
             string tekst = "";
@@ -30,9 +30,9 @@ namespace Dobble.hulpclasse
             byte[] bdata = Encoding.Default.GetBytes(tekst);
             fs.Write(bdata, 0, bdata.Length);
             fs.Close();
-
         }
-        //toevoegen aan bestand 
+        #endregion
+        #region toevoegen aan bestand 
         public void Append(string tekst, string bestandsnaam)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -44,7 +44,8 @@ namespace Dobble.hulpclasse
             fs.Close();
 
         }
-        // lezen van tekstfile
+        #endregion
+        #region lezen van tekstfile
         public string ReadFile(string bestandsnaam)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -66,5 +67,7 @@ namespace Dobble.hulpclasse
 
             return content;
         }
+        #endregion
     }
 }
+

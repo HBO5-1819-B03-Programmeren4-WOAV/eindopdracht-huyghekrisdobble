@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+
 
 namespace Dobble.Domain
 {
     public class Playground
     {
-        public Card card1 { get; set; }
-        public Card card2 { get; set; }
-        
+       public List<Card> Cards;
     }
 }

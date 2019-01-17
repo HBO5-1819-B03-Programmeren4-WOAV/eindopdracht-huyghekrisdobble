@@ -1,16 +1,12 @@
-﻿using FreshMvvm;
-//using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNetCore.SignalR.Client;
+﻿using Microsoft.AspNetCore.SignalR.Client;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Dobble.hulpclasse
 {
     // methode om via signalR gegevens te pushen naar chathup hup die je dan dan uitlezen op webpagina http://localhost:56376
-    public class SentPlayInfo : FreshBasePageModel
+    public class SentPlayInfo 
     {
         public async Task<bool> PlayInfo()
         {
