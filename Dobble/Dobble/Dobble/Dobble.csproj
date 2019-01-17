@@ -10,6 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\beker.jpg" />
+    <None Remove="Images\Circle.png" />
+    <None Remove="Images\play.png" />
+    <None Remove="Images\Player.jpg" />
+    <None Remove="Images\Scores.png" />
+    <None Remove="Images\Sound.jpg" />
+    <None Remove="Images\verhouding.png" />
+    <None Remove="Images\vibrate.png" />
     <None Remove="Music\Correct.mp3" />
     <None Remove="Music\Game-show-winner-bell-sound-effect.mp3" />
     <None Remove="Music\gameMusic.mp3" />
@@ -17,6 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Images\beker.jpg" />
+    <EmbeddedResource Include="Images\Circle.png" />
+    <EmbeddedResource Include="Images\play.png" />
+    <EmbeddedResource Include="Images\Player.jpg" />
+    <EmbeddedResource Include="Images\Scores.png" />
+    <EmbeddedResource Include="Images\Sound.jpg" />
+    <EmbeddedResource Include="Images\verhouding.png" />
+    <EmbeddedResource Include="Images\vibrate.png" />
     <EmbeddedResource Include="Music\Correct.mp3" />
     <EmbeddedResource Include="Music\Game-show-winner-bell-sound-effect.mp3" />
     <EmbeddedResource Include="Music\gameMusic.mp3" />

@@ -16,6 +16,7 @@ namespace Dobble
 
             var mainview = FreshPageModelResolver.ResolvePageModel<MainViewModel>();
             MainPage = new FreshNavigationContainer(mainview);
+            
         }
 
 

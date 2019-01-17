@@ -20,9 +20,9 @@ namespace Dobble.Pages
             {
 
 
-                AantalJuist.Text = "Juist:" + Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString();
-                Score.Text = "  Score:" + Globals.Totaalscore;
-                MaxScore.Text = "Max score:" + Globals.MaxScore;
+                AantalJuist.Text = Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString();
+                Score.Text =  Globals.Totaalscore.ToString();
+                MaxScore.Text = Globals.MaxScore.ToString();
                 return true;
             });
             var bestand = new Bestand();

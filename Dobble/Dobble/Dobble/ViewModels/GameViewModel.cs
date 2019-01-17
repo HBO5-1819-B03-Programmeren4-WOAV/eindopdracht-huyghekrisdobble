@@ -368,26 +368,31 @@ namespace Dobble.ViewModels
                 return new Command<string>((x) => Klik(x));
             }
         }
-        public void Klik(string x)
+        public void Klik(string figuur)
         {
-            if (x == "1") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig1); }
-            if (x == "2") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig2); }
-            if (x == "3") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig3); }
-            if (x == "4") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig4); }
-            if (x == "5") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig5); }
-            if (x == "6") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig6); }
-            if (x == "7") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig7); }
-            if (x == "8") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig8); }
-            if (x == "9") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig9); }
-            if (x == "10") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig10); }
-            if (x == "11") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig11); }
-            if (x == "12") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig12); }
-            if (x == "13") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig13); }
-            if (x == "14") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig14); }
-            if (x == "15") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig15); }
-            if (x == "16") { string antwoord = new Zoekoplossing().Antwoord(figuren.fig16); }
-            //handle parameter x to say "Hello " + x
-            Score = "Juist:" + Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString() + " Totaal score:" + Globals.Totaalscore;
+            Zoekoplossing zoekoplossing = new Zoekoplossing();
+            int x = Int32.Parse(figuur);
+          
+            for (int i = 0 ; i <= 16; i++)
+            { // print numbers from 1 to 5
+                if (x == i)
+                {
+                    if (i < playground.card1.picturelist.Count())
+                    {
+                        zoekoplossing.Antwoord(playground.card1.picturelist[i]);
+                    }
+                    else
+                    {
+                        zoekoplossing.Antwoord(playground.card2.picturelist[i - playground.card1.picturelist.Count()]);
+                    }
+                }
+                         
+            }
+       
+ 
+            Score = Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString() + " Score:" + Globals.Totaalscore;
+       
+
             if (Globals.TeScoren < 1)
             {
                 var bestand = new Bestand();
@@ -405,14 +410,24 @@ namespace Dobble.ViewModels
                     bestand.Save(Globals.Totaalscore.ToString(), "maxScore.txt");
                     Globals.MaxScore = Globals.Totaalscore;
                 }
+                string ScoreTekst = "";
+                if (Globals.Username == "")
+                {
+                    ScoreTekst = Score;
+                }
+                else
+                {
+                    ScoreTekst = Globals.Username + " you did a nice game \n" + Score;
+                }
+                
 
-                CoreMethods.DisplayAlert("Scorebord",Score , "OK");
+                CoreMethods.DisplayAlert("Scores", ScoreTekst, "OK");
                CoreMethods.PopPageModel();
             
             }
             else
             {
-                figuren = GetFigInfo();
+                GetFigInfo();
             }
             
             
@@ -425,9 +440,7 @@ namespace Dobble.ViewModels
 
         Cards cards = new Cards();
 
-        // Figuren figuren = new Figuren();
 
-        public Figuren figuren { set; get; }
          
 
         
@@ -441,8 +454,9 @@ namespace Dobble.ViewModels
 
         public GameViewModel()
         {
-            Score = "Totaal Score:0";
-            figuren = GetFigInfo();
+            Score = "0/0 Score:0";
+            Globals.TeScore = 1000;
+            GetFigInfo();
 
         }
        
@@ -465,72 +479,64 @@ namespace Dobble.ViewModels
 
 
         }
-        public Figuren GetFigInfo()
+        public void GetFigInfo()
         {
           
             Random rnd = new Random();
-            int card1random = rnd.Next(0, cards.list.Count - 1);
-            int card2random = rnd.Next(0, cards.list.Count - 1);
+
+            int card1random = rnd.Next(0, cards.lijst.Count - 1);
+            int card2random = rnd.Next(0, cards.lijst.Count - 1);
+
+
             //voor te voorkomen dat 2 keer dezelfde kaart verschijnt
             while (card1random == card2random)
             {
-                card2random = rnd.Next(0, cards.list.Count - 1);
+            
+                card2random = rnd.Next(0, cards.lijst.Count - 1);
             }
-            playground.card2 = cards.list.ElementAt(card1random);
-            playground.card1 = cards.list.ElementAt(card2random);
+ 
+
+            ////new
+            playground.card1 = cards.lijst.ElementAt(card1random);
+            playground.card2 = cards.lijst.ElementAt(card2random);
+
             var oplos = new Zoekoplossing();
-            string oplossing = oplos.Oplossing(playground.card1, playground.card2);
+            Globals.oplossing = oplos.Oplossing(playground.card1, playground.card2);
            
             string basis = Device.RuntimePlatform == Device.Android ? "a" : "Images/a";
            // string basis = "Images/a";
             string achtervoegsel = Device.RuntimePlatform == Device.Android ? ".png" : ".jpg";
-            Figuren info = new Figuren
-            {
-                fig1 = basis + playground.card1.picture1 + achtervoegsel,
-                fig2 = basis + playground.card1.picture2 + achtervoegsel,
-                fig3 = basis + playground.card1.picture3 + achtervoegsel,
-                fig4 = basis + playground.card1.picture4 + achtervoegsel,
-                fig5 = basis + playground.card1.picture5 + achtervoegsel,
-                fig6 = basis + playground.card1.picture6 + achtervoegsel,
-                fig7 = basis + playground.card1.picture7 + achtervoegsel,
-                fig8 = basis + playground.card1.picture8 + achtervoegsel,
-                fig9 = basis + playground.card2.picture1 + achtervoegsel,
-                fig10 = basis + playground.card2.picture2 + achtervoegsel,
-                fig11 = basis + playground.card2.picture3 + achtervoegsel,
-                fig12 = basis + playground.card2.picture4 + achtervoegsel,
-                fig13 = basis + playground.card2.picture5 + achtervoegsel,
-                fig14 = basis + playground.card2.picture6 + achtervoegsel,
-                fig15 = basis + playground.card2.picture7 + achtervoegsel,
-                fig16 = basis + playground.card2.picture8 + achtervoegsel,
-                oplossing = basis + oplossing + achtervoegsel,
-                grote = 60,
-               
-            };
-            
-            Globals.TeScoren = 3000 - (100 * Globals.aantal_pogingen) ;
-      
-            Figur1 = basis + playground.card1.picture1 + achtervoegsel;
-            Figur2 = basis + playground.card1.picture2 + achtervoegsel;
-            Figur3 = basis + playground.card1.picture3 + achtervoegsel;
-            Figur4 = basis + playground.card1.picture4 + achtervoegsel;
-            Figur5 = basis + playground.card1.picture5 + achtervoegsel;
-            Figur6 = basis + playground.card1.picture6 + achtervoegsel;
-            Figur7 = basis + playground.card1.picture7 + achtervoegsel;
-            Figur8 = basis + playground.card1.picture8 + achtervoegsel;
-            Figur9 = basis + playground.card2.picture1 + achtervoegsel;
-            Figur10 = basis + playground.card2.picture2 + achtervoegsel;
-            Figur11 = basis + playground.card2.picture3 + achtervoegsel;
-            Figur12 = basis + playground.card2.picture4 + achtervoegsel;
-            Figur13 = basis + playground.card2.picture5 + achtervoegsel;
-            Figur14 = basis + playground.card2.picture6 + achtervoegsel;
-            Figur15 = basis + playground.card2.picture7 + achtervoegsel;
-            Figur16 = basis + playground.card2.picture8 + achtervoegsel;
+           
+            Globals.TeScoren = Convert.ToInt64(Globals.TeScore * 0.8);
+            // nodig voor progressbar 
+            Globals.TeScore = Globals.TeScoren;
+
+         
+
+            Figur1 = basis + playground.card1.picturelist[0] + achtervoegsel;
+            Figur2 = basis + playground.card1.picturelist[1] + achtervoegsel;
+            Figur3 = basis + playground.card1.picturelist[2] + achtervoegsel;
+            Figur4 = basis + playground.card1.picturelist[3] + achtervoegsel;
+            Figur5 = basis + playground.card1.picturelist[4] + achtervoegsel;
+            Figur6 = basis + playground.card1.picturelist[5] + achtervoegsel;
+            Figur7 = basis + playground.card1.picturelist[6] + achtervoegsel;
+            Figur8 = basis + playground.card1.picturelist[7] + achtervoegsel;
+            Figur9 = basis + playground.card2.picturelist[0] + achtervoegsel;
+            Figur10 = basis + playground.card2.picturelist[1] + achtervoegsel;
+            Figur11 = basis + playground.card2.picturelist[2] + achtervoegsel;
+            Figur12 = basis + playground.card2.picturelist[3] + achtervoegsel;
+            Figur13 = basis + playground.card2.picturelist[4] + achtervoegsel;
+            Figur14 = basis + playground.card2.picturelist[5] + achtervoegsel;
+            Figur15 = basis + playground.card2.picturelist[6] + achtervoegsel;
+            Figur16 = basis + playground.card2.picturelist[7] + achtervoegsel;
+
+
+
             var bewaar = new Bestand();
-            oplossing = basis + oplossing + achtervoegsel;
-            Globals.oplossing = oplossing;
+         //   oplossing = basis + oplossing + achtervoegsel;
+          //  Globals.oplossing = oplossing;
             string tijd = DateTime.Now.ToString();
-            bewaar.Save(tijd, "tijd.txt");
-            return info;
+          
         }
        
        

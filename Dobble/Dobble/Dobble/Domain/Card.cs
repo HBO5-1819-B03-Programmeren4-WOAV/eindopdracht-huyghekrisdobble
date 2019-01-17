@@ -6,6 +6,7 @@ namespace Dobble.Domain
 {
     public class Card
     {
+        public List<string> picturelist;
         public string picture1 { get; set; }
         public string picture2 { get; set; }
         public string picture3 { get; set; }

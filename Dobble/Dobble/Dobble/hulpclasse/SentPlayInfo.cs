@@ -28,7 +28,8 @@ namespace Dobble.hulpclasse
                 DateTimeOffset local_offset = new DateTimeOffset(now);
                 DateTimeOffset utc_offset = local_offset.ToUniversalTime();
 
-                string message = "GMT:" + utc_offset.ToString() + " De totaalscore is:" + Globals.Totaalscore.ToString() + " Aantal juist:" + Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString() + " MaxScoreOnDevice:" + Globals.MaxScore.ToString() ;
+
+                string message = Globals.Username.ToString() + " GMT:" + utc_offset.ToString() + " De totaalscore is:" + Globals.Totaalscore.ToString() + " Aantal juist:" + Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString() + " MaxScoreOnDevice:" + Globals.MaxScore.ToString();
                 if (verbinding == "Connected") 
                 {
                     await Connection.InvokeAsync("SendMessage", Device.RuntimePlatform , message);

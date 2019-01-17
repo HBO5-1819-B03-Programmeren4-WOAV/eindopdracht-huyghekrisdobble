@@ -10,8 +10,12 @@ namespace Dobble.hulpclasse
         public static int aantal_pogingen = 0;
         public static int aantal_juist = 0;
         public static string oplossing { get; set; }
-        public static int TeScoren = 3000;
-        public static int Totaalscore = 0;
-        public static int MaxScore = 0;
+        public static double TeScoren { get; set; }
+        public static double TeScore = 1500;
+        public static double Totaalscore = 0;
+        public static double MaxScore = 0;
+        public static bool Sound { get; set; }
+        public static bool Vibrate { get; set; }
+        public static string Username { get; set; }
     }
 }

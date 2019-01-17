@@ -4,10 +4,10 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Dobble.Extentions
+namespace Dobble.Extensions
 {
     [ContentProperty("Source")]
-    public class ImageResourceExtention : IMarkupExtension
+    public class ImageResourceExtension : IMarkupExtension
     {
         public string Source { get; set; }
         public Object ProvideValue(IServiceProvider serviceProvider)
