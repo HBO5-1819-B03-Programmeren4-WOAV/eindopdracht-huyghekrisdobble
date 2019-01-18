@@ -15,6 +15,7 @@ namespace Dobble.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         Bestand bestand = new Bestand();
+        #region modelbinding 
         private string username;
         public string Username
         {
@@ -132,15 +133,17 @@ namespace Dobble.ViewModels
                 return vibrate;
             }
         }
-
+        #endregion
 
 
         public ICommand StartGameCommand { get; private set; }
-    
+        public ICommand FlexCommand { get; private set; }
+        #region MainViewModel 
         public MainViewModel()
         {
             
             StartGameCommand = new Command(GamePage);
+            FlexCommand = new Command(FlexGame);
             try
             {
                 var bestand = new Bestand();
@@ -156,15 +159,30 @@ namespace Dobble.ViewModels
             }
             //ListPageCommand = new Command(OpenLijstInfoPage);
         }
+        #endregion
+        #region gamepage
         private async void GamePage()
         {
+            Globals.TeScore = 1000;
             Globals.aantal_juist = 0;
             Globals.aantal_pogingen = 0;
             Globals.TeScoren = 0;
             Globals.Totaalscore = 0;
             await CoreMethods.PushPageModel<GameViewModel>(true);
         }
-      
-    
+        #endregion
+        #region Flexgame poging om ultieme flex ervaring te ondervinden
+        private async void FlexGame()
+        {
+            Globals.TeScore = 1000;
+            Globals.aantal_juist = 0;
+            Globals.aantal_pogingen = 0;
+            Globals.TeScoren = 0;
+            Globals.Totaalscore = 0;
+            await CoreMethods.PushPageModel<FlexViewModel>(true);
+        }
+        #endregion
+
+
     }
 }
