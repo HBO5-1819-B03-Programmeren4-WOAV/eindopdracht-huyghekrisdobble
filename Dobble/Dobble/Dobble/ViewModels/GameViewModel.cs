@@ -449,14 +449,14 @@ namespace Dobble.ViewModels
         #region init
         public override void Init(object initData)
         {
-           base.Init(initData);
+            base.Init(initData);
         }
         #endregion
         #region Speelveld bepalen figuren toevoegen
 
         public void GetFigInfo()
         {
-          
+
             Random rnd = new Random();
 
             int card1random = rnd.Next(0, cards.lijst.Count - 1);
@@ -466,27 +466,27 @@ namespace Dobble.ViewModels
             //voor te voorkomen dat 2 keer dezelfde kaart verschijnt
             while (card1random == card2random)
             {
-            
+
                 card2random = rnd.Next(0, cards.lijst.Count - 1);
             }
 
 
             ////new
-           
-            playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random)};
+
+            playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random) };
 
 
-            
-           
+
+
             string basis = Device.RuntimePlatform == Device.Android ? "a" : "Images/a";
-           // string basis = "Images/a";
+            // string basis = "Images/a";
             string achtervoegsel = Device.RuntimePlatform == Device.Android ? ".png" : ".jpg";
-           
+
             Globals.TeScoren = Convert.ToInt64(Globals.TeScore * 0.8);
             // nodig voor progressbar 
             Globals.TeScore = Globals.TeScoren;
 
-         
+
 
             Figur1 = basis + playground.Cards[0].picturelist[0] + achtervoegsel;
             Figur2 = basis + playground.Cards[0].picturelist[1] + achtervoegsel;
@@ -505,7 +505,7 @@ namespace Dobble.ViewModels
             Figur15 = basis + playground.Cards[1].picturelist[6] + achtervoegsel;
             Figur16 = basis + playground.Cards[1].picturelist[7] + achtervoegsel;
 
-          
+
         }
         #endregion
 

@@ -1,12 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Dobble.Pages.FlexPage">
+             xmlns:extentions="clr-namespace:Dobble.Extentions"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="Dobble.Pages.FlexPage"
+             
+             xmlns:extensions="clr-namespace:Dobble.Extensions"
+             Title="{Binding Score}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <ProgressBar x:Name="Progres"/>
+            <ScrollView>
+                
+                <Grid x:Name="grid" VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand">
+                
+                <Grid.RowDefinitions>
+                <RowDefinition x:Name="Rij0" />
+                 <RowDefinition x:Name="Rij1" />
+                <RowDefinition x:Name="Rij2" />
+                <RowDefinition x:Name="Rij3" />
+                <RowDefinition x:Name="Rij4"/>
+                <RowDefinition x:Name="Rij5" />
+                <RowDefinition x:Name="Rij6" />
+                <RowDefinition x:Name="Rij7" />
+                <RowDefinition x:Name="Rij8" />
+
+                    </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="Col0" />
+                <ColumnDefinition x:Name="Col1" />
+                <ColumnDefinition x:Name="Col2" />
+                <ColumnDefinition x:Name="Col3" />
+                <ColumnDefinition x:Name="Col4" />
+                    </Grid.ColumnDefinitions>
+                    <Image ScaleX="1.8" ScaleY="1.8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Source="{extensions:ImageResource Dobble.Images.Circle.png}" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+                    <Image ScaleX="1.8" ScaleY="1.8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Source="{extensions:ImageResource Dobble.Images.Circle.png}" Grid.Row="5" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+                    <ImageButton Source="{Binding Figur1}" Command="{Binding KlikCommand}" CommandParameter="0" Aspect="Fill"  Rotation="0" Grid.Row="1" Grid.Column="1"  />
+                    <ImageButton Source="{Binding Figur2}"  Command="{Binding  KlikCommand}" CommandParameter="1" Aspect="Fill" Rotation="180"  Grid.Row="1" Grid.Column="2" />
+                    <ImageButton Source="{Binding Figur3}"  Command="{Binding  KlikCommand}" CommandParameter="2"  Aspect="Fill"  Rotation="0"   Grid.Row="1" Grid.Column="3"  />
+                    <ImageButton Source="{Binding Figur4}"  Command="{Binding  KlikCommand}" CommandParameter="3" Aspect="Fill" Rotation="90"   Grid.Row="2" Grid.Column="1" />
+                    <ImageButton Source="{Binding Figur5}"  Command="{Binding  KlikCommand}" CommandParameter="4" Aspect="Fill"   Grid.Row="3" Grid.Column="3" />
+                    <ImageButton Source="{Binding Figur6}"  Command="{Binding  KlikCommand}" CommandParameter="5" Aspect="Fill" Rotation="-90"  Grid.Row="2" Grid.Column="3" />
+                    <ImageButton Source="{Binding Figur7}"  Command="{Binding  KlikCommand}" CommandParameter="6" Aspect="Fill"  Rotation="0" Grid.Row="3" Grid.Column="1"/>
+                    <ImageButton Source="{Binding Figur8}"  Command="{Binding  KlikCommand}" CommandParameter="7" Aspect="Fill" Rotation="180"   Grid.Row="3" Grid.Column="2" />
+                    <ImageButton Source="{Binding Figur9}"  Command="{Binding  KlikCommand}" CommandParameter="8" Aspect="Fill" Rotation="0"  Grid.Row="5" Grid.Column="1" />
+                    
+                    <ImageButton Source="{Binding Figur10}"  Command="{Binding  KlikCommand}" CommandParameter="9" Aspect="Fill" Rotation="180"   Grid.Row="5" Grid.Column="2" />
+                    <ImageButton Source="{Binding Figur11}"  Command="{Binding  KlikCommand}" CommandParameter="10" Aspect="Fill"  Rotation="0" Grid.Row="5" Grid.Column="3"  />
+                    <ImageButton Source="{Binding Figur12}"  Command="{Binding  KlikCommand}" CommandParameter="11" Aspect="Fill" Rotation="90"   Grid.Row="6" Grid.Column="1" />
+                    <ImageButton Source="{Binding Figur13}"  Command="{Binding  KlikCommand}" CommandParameter="12" Aspect="Fill" Rotation="0"  Grid.Row="7" Grid.Column="3" />
+                    <ImageButton Source="{Binding Figur14}"  Command="{Binding  KlikCommand}" CommandParameter="13" Aspect="Fill"  Rotation="-90" Grid.Row="6" Grid.Column="3" />
+                    <ImageButton Source="{Binding Figur15}"  Command="{Binding  KlikCommand}" CommandParameter="14" Aspect="Fill"  Rotation="0" Grid.Row="7" Grid.Column="1" />
+                    <ImageButton Source="{Binding Figur16}"  Command="{Binding  KlikCommand}" CommandParameter="15" Aspect="Fill"  Rotation="180" Grid.Row="7" Grid.Column="2" />
+                    
+            
+            </Grid>
+        
+        </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
