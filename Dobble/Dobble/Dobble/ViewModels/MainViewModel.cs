@@ -15,7 +15,35 @@ namespace Dobble.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         Bestand bestand = new Bestand();
+        
         #region modelbinding 
+        private Int16 level;
+        public Int16 Level
+        {
+            set
+            {
+                if (level != value)
+                {
+                    level = value;
+
+                    Globals.Level = level;
+                   
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Level"));
+
+                    }
+                }
+            }
+            get
+            {
+                Globals.Level = level;
+               
+                return level;
+            }
+        }
+
+
         private string username;
         public string Username
         {
@@ -138,6 +166,9 @@ namespace Dobble.ViewModels
 
         public ICommand StartGameCommand { get; private set; }
         public ICommand FlexCommand { get; private set; }
+        
+
+
         #region MainViewModel 
         public MainViewModel()
         {
@@ -174,7 +205,8 @@ namespace Dobble.ViewModels
         #region Flexgame poging om ultieme flex ervaring te ondervinden
         private async void FlexGame()
         {
-            Globals.TeScore = 1000;
+            Globals.Level = Level;
+            Globals.TeScore = 1500;
             Globals.aantal_juist = 0;
             Globals.aantal_pogingen = 0;
             Globals.TeScoren = 0;

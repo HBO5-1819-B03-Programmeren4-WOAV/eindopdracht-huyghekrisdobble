@@ -708,11 +708,12 @@ namespace Dobble.ViewModels
         }
         #endregion
         #region Gameviewmodel
-
+        int aantalfiguren { get; set; }
         public FlexViewModel()
         {
+            aantalfiguren = Globals.Level + 2;
             Score = "0/0 Score:0";
-            Globals.TeScore = 1000;
+            
             GetFigInfo();
 
         }
@@ -736,24 +737,31 @@ namespace Dobble.ViewModels
             playground.Cards = new List<Card> { };
             Random rnd = new Random();
             // een van de 57 figuurtjes
-            int oplos = rnd.Next(0, figuren.Count() -1 );
+            int oplos = rnd.Next(0, figuren.Count() );
             int oplossing = figuren[oplos];
             figuren.RemoveAt(oplos);
             while (cards > 0 )
             {
                 var lijst = new List<string>();
                 lijst.Add(oplossing.ToString());
-                for (int i= 0; i <= figurs; i++)
+                for (int i= 0; i < figurs - 1; i++)
                 {
-                    int toevoeg = rnd.Next(0, figuren.Count() - 1 );
+                    int toevoeg = rnd.Next(0, figuren.Count()  );
                     int toevoegen = figuren[toevoeg];
                     lijst.Add(toevoegen.ToString());
                     figuren.RemoveAt(toevoeg);
                 }
+                // shuffel lijst
+                var ShuffelLijst = new List<string>();
+                while (lijst.Count != 0)
+                {
+                    var index = rnd.Next(0, lijst.Count);
+                    ShuffelLijst.Add(lijst[index]);
+                    lijst.RemoveAt(index);
+                }
 
-              
 
-                Card card = new Card { picturelist = lijst };
+                Card card = new Card { picturelist = ShuffelLijst };
                 playground.Cards.Add( card);  
 
 
@@ -764,25 +772,8 @@ namespace Dobble.ViewModels
         public void GetFigInfo()
         {
 
-
-            Random rnd = new Random();
-
-            int card1random = rnd.Next(0, cards.lijst.Count - 1);
-            int card2random = rnd.Next(0, cards.lijst.Count - 1);
-
-
-            //voor te voorkomen dat 2 keer dezelfde kaart verschijnt
-            while (card1random == card2random)
-            {
-
-                card2random = rnd.Next(0, cards.lijst.Count - 1);
-            }
-
-
-            ////new
-
-            //  playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random) };
-            int aantalfiguren = 7;
+         //  playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random) };
+          
             playground = MakePlayField(2, aantalfiguren);
 
 

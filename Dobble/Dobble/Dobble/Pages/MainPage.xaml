@@ -30,9 +30,22 @@
                
 
             </Grid>
-            <ImageButton Margin="20" Source="{extensions:ImageResource Dobble.Images.play.png}" HeightRequest="80" WidthRequest="80" Command="{Binding StartGameCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
+            <!--<ImageButton Margin="20" Source="{extensions:ImageResource Dobble.Images.play.png}" HeightRequest="80" WidthRequest="80" Command="{Binding StartGameCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />-->
             <ImageButton Margin="20" Source="{extensions:ImageResource Dobble.Images.play.png}" HeightRequest="80" WidthRequest="80" Command="{Binding FlexCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
-
+            <Picker Title="Select Level" SelectedIndex="{Binding Level, Mode=TwoWay}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Level 1 (2 figures)</x:String>
+                        <x:String>Level 2 (3 figures)</x:String>
+                        <x:String>Level 3 (4 figures)</x:String>
+                        <x:String>Level 4 (5 figures)</x:String>
+                        <x:String>Level 5 (6 figures)</x:String>
+                        <x:String>Level 6 (7 figures)</x:String>
+                        <x:String>Level 7 (8 figures)</x:String>
+                        <x:String>Level 8 (9 figures)</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
             <Grid>
                 <Image Source="{extensions:ImageResource Dobble.Images.Player.jpg}" WidthRequest="40" HeightRequest="40" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0"/>
                 <Entry FontSize="20" Placeholder = "Player"  Text="{Binding Username, Mode=TwoWay}" WidthRequest="180" Grid.Row="0" Grid.Column="1" />

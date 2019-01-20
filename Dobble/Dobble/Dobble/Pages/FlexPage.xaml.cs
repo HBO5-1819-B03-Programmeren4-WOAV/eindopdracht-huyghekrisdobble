@@ -11,7 +11,8 @@ namespace Dobble.Pages
 	{
 		public FlexPage ()
 		{
-           
+            Globals.TeScoren = 1500;
+            Globals.TeScore = 1500;            
             InitializeComponent();
            
             SizeChanged += (object sender, EventArgs args) =>
