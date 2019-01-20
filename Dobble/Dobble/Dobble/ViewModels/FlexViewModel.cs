@@ -19,7 +19,6 @@ namespace Dobble.ViewModels
         public string oplossing;
         //lijst met vast aantal kaarten
         Cards cards = new Cards();
-
         #region databinding MvvM
 
         private string figur1;
@@ -342,6 +341,46 @@ namespace Dobble.ViewModels
                 return figur16;
             }
         }
+        private string figur17;
+        public string Figur17
+        {
+            set
+            {
+                if (figur17 != value)
+                {
+                    figur17 = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Figur17"));
+                    }
+                }
+            }
+            get
+            {
+                return figur17;
+            }
+        }
+        private string figur18;
+        public string Figur18
+        {
+            set
+            {
+                if (figur18 != value)
+                {
+                    figur18 = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Figur18"));
+                    }
+                }
+            }
+            get
+            {
+                return figur18;
+            }
+        }
         private string _Score;
         public string Score
         {
@@ -362,7 +401,243 @@ namespace Dobble.ViewModels
                 return _Score;
             }
         }
+        
+        bool visible1;
+        public bool Visible1
+        {
+            get
+            {
+                return visible1;
+            }
+            set
+            {
+                visible1 = value;
+                RaisePropertyChanged("Visible1");
+            }
+        }
+        bool visible2;
+        public bool Visible2
+        {
+            get
+            {
+                return visible2;
+            }
+            set
+            {
+                visible2 = value;
+                RaisePropertyChanged("Visible2");
+            }
+        }
+        bool visible3;
+        public bool Visible3
+        {
+            get
+            {
+                return visible3;
+            }
+            set
+            {
+                visible3 = value;
+                RaisePropertyChanged("Visible3");
+            }
+        }
+        bool visible4;
+        public bool Visible4
+        {
+            get
+            {
+                return visible4;
+            }
+            set
+            {
+                visible4 = value;
+                RaisePropertyChanged("Visible4");
+            }
+        }
+        bool visible5;
+        public bool Visible5
+        {
+            get
+            {
+                return visible5;
+            }
+            set
+            {
+                visible5 = value;
+                RaisePropertyChanged("Visible5");
+            }
+        }
+        bool visible6;
+        public bool Visible6
+        {
+            get
+            {
+                return visible6;
+            }
+            set
+            {
+                visible6 = value;
+                RaisePropertyChanged("Visible6");
+            }
+        }
+        bool visible7;
+        public bool Visible7
+        {
+            get
+            {
+                return visible7;
+            }
+            set
+            {
+                visible7 = value;
+                RaisePropertyChanged("Visible7");
+            }
+        }
+        bool visible8;
+        public bool Visible8
+        {
+            get
+            {
+                return visible8;
+            }
+            set
+            {
+                visible8 = value;
+                RaisePropertyChanged("Visible8");
+            }
+        }
+        bool visible9;
+        public bool Visible9
+        {
+            get
+            {
+                return visible9;
+            }
+            set
+            {
+                visible9 = value;
+                RaisePropertyChanged("Visible9");
+            }
+        }
+        bool visible10;
+        public bool Visible10
+        {
+            get
+            {
+                return visible10;
+            }
+            set
+            {
+                visible10 = value;
+                RaisePropertyChanged("Visible10");
+            }
+        }
+        bool visible11;
+        public bool Visible11
+        {
+            get
+            {
+                return visible11;
+            }
+            set
+            {
+                visible11 = value;
+                RaisePropertyChanged("Visible11");
+            }
+        }
+        bool visible12;
+        public bool Visible12
+        {
+            get
+            {
+                return visible12;
+            }
+            set
+            {
+                visible12 = value;
+                RaisePropertyChanged("Visible12");
+            }
+        }
+        bool visible13;
+        public bool Visible13
+        {
+            get
+            {
+                return visible13;
+            }
+            set
+            {
+                visible13 = value;
+                RaisePropertyChanged("Visible13");
+            }
+        }
+        bool visible14;
+        public bool Visible14
+        {
+            get
+            {
+                return visible14;
+            }
+            set
+            {
+                visible14 = value;
+                RaisePropertyChanged("Visible14");
+            }
+        }
+        bool visible15;
+        public bool Visible15
+        {
+            get
+            {
+                return visible15;
+            }
+            set
+            {
+                visible15 = value;
+                RaisePropertyChanged("Visible15");
+            }
+        }
+        bool visible16;
+        public bool Visible16
+        {
+            get
+            {
+                return visible16;
+            }
+            set
+            {
+                visible16 = value;
+                RaisePropertyChanged("Visible16");
+            }
+        }
+        bool visible17;
+        public bool Visible17
+        {
+            get
+            {
+                return visible17;
+            }
+            set
+            {
+                visible17= value;
+                RaisePropertyChanged("Visible17");
+            }
+        }
+        bool visible18;
+        public bool Visible18
+        {
+            get
+            {
+                return visible18;
+            }
+            set
+            {
+                visible18 = value;
+                RaisePropertyChanged("Visible18");
+            }
+        }
         #endregion
+
 
         #region als op een figuur geklikt wordt komt dit in werking
         public ICommand KlikCommand
@@ -378,8 +653,8 @@ namespace Dobble.ViewModels
             oplossing = zoekoplossing.Oplossing(playground);
             int x = Int32.Parse(figuur);
 
-            for (int i = 0; i <= 16; i++)
-            { // print numbers from 1 to 5
+            for (int i = 0; i <= 20; i++)
+            { 
                 if (x == i)
                 {
                     if (i < playground.Cards[0].picturelist.Count())
@@ -388,7 +663,7 @@ namespace Dobble.ViewModels
                     }
                     else
                     {
-                        zoekoplossing.Antwoord(playground.Cards[1].picturelist[i - playground.Cards[0].picturelist.Count()], oplossing);
+                        zoekoplossing.Antwoord(playground.Cards[1].picturelist[i - 9], oplossing);
                     }
                 }
 
@@ -450,9 +725,45 @@ namespace Dobble.ViewModels
         }
         #endregion
         #region Speelveld bepalen figuren toevoegen
+        public Playground MakePlayField(int cards, int figurs)
+        {
+            List<int> figuren = new List<int>();
+            for (int i= 1; i <= 57; i++)
+            {
+                figuren.Add(i);
+            }
+            Playground playground = new Playground();
+            playground.Cards = new List<Card> { };
+            Random rnd = new Random();
+            // een van de 57 figuurtjes
+            int oplos = rnd.Next(0, figuren.Count() -1 );
+            int oplossing = figuren[oplos];
+            figuren.RemoveAt(oplos);
+            while (cards > 0 )
+            {
+                var lijst = new List<string>();
+                lijst.Add(oplossing.ToString());
+                for (int i= 0; i <= figurs; i++)
+                {
+                    int toevoeg = rnd.Next(0, figuren.Count() - 1 );
+                    int toevoegen = figuren[toevoeg];
+                    lijst.Add(toevoegen.ToString());
+                    figuren.RemoveAt(toevoeg);
+                }
 
+              
+
+                Card card = new Card { picturelist = lijst };
+                playground.Cards.Add( card);  
+
+
+                cards--;
+            }
+            return playground;
+        }
         public void GetFigInfo()
         {
+
 
             Random rnd = new Random();
 
@@ -470,9 +781,9 @@ namespace Dobble.ViewModels
 
             ////new
 
-            playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random) };
-
-
+            //  playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random) };
+            int aantalfiguren = 7;
+            playground = MakePlayField(2, aantalfiguren);
 
 
             string basis = Device.RuntimePlatform == Device.Android ? "a" : "Images/a";
@@ -485,23 +796,99 @@ namespace Dobble.ViewModels
 
 
 
-            Figur1 = basis + playground.Cards[0].picturelist[0] + achtervoegsel;
-            Figur2 = basis + playground.Cards[0].picturelist[1] + achtervoegsel;
-            Figur3 = basis + playground.Cards[0].picturelist[2] + achtervoegsel;
-            Figur4 = basis + playground.Cards[0].picturelist[3] + achtervoegsel;
-            Figur5 = basis + playground.Cards[0].picturelist[4] + achtervoegsel;
-            Figur6 = basis + playground.Cards[0].picturelist[5] + achtervoegsel;
-            Figur7 = basis + playground.Cards[0].picturelist[6] + achtervoegsel;
-            Figur8 = basis + playground.Cards[0].picturelist[7] + achtervoegsel;
-            Figur9 = basis + playground.Cards[1].picturelist[0] + achtervoegsel;
-            Figur10 = basis + playground.Cards[1].picturelist[1] + achtervoegsel;
-            Figur11 = basis + playground.Cards[1].picturelist[2] + achtervoegsel;
-            Figur12 = basis + playground.Cards[1].picturelist[3] + achtervoegsel;
-            Figur13 = basis + playground.Cards[1].picturelist[4] + achtervoegsel;
-            Figur14 = basis + playground.Cards[1].picturelist[5] + achtervoegsel;
-            Figur15 = basis + playground.Cards[1].picturelist[6] + achtervoegsel;
-            Figur16 = basis + playground.Cards[1].picturelist[7] + achtervoegsel;
 
+
+            Figur1 = basis + playground.Cards[0].picturelist[0] + achtervoegsel;
+            Visible1 = true;
+            if (aantalfiguren > 1)
+            {
+                Figur2 = basis + playground.Cards[0].picturelist[1] + achtervoegsel;
+                Visible2 = true;
+            }
+            
+            if (aantalfiguren > 2)
+            {
+                Figur3 = basis + playground.Cards[0].picturelist[2] + achtervoegsel;
+                Visible3 = true;
+            }
+            if (aantalfiguren > 3)
+            {
+                Figur4 = basis + playground.Cards[0].picturelist[3] + achtervoegsel;
+                Visible4 = true;
+            }
+            if (aantalfiguren > 4)
+            {
+                Figur5 = basis + playground.Cards[0].picturelist[4] + achtervoegsel;
+                Visible5 = true;
+            }
+            if (aantalfiguren > 5)
+            {
+                Figur6 = basis + playground.Cards[0].picturelist[5] + achtervoegsel;
+                Visible6 = true;
+            }
+            if (aantalfiguren > 6)
+            {
+                Figur7 = basis + playground.Cards[0].picturelist[6] + achtervoegsel;
+                Visible7 = true;
+            }
+            if (aantalfiguren > 7)
+            {
+                Figur8 = basis + playground.Cards[0].picturelist[7] + achtervoegsel;
+                Visible8 = true;
+            }
+            if (aantalfiguren > 8)
+            {
+                Figur9 = basis + playground.Cards[0].picturelist[8] + achtervoegsel;
+                Visible9 = true;
+            }
+            
+            // Onderste kaart 
+
+            Figur10 = basis + playground.Cards[1].picturelist[0] + achtervoegsel;
+            Visible10 = true;
+            if (aantalfiguren > 1)
+            {
+                Figur11 = basis + playground.Cards[1].picturelist[1] + achtervoegsel;
+                Visible11 = true;
+            }
+            
+
+            if (aantalfiguren > 2)
+            {
+                Figur12 = basis + playground.Cards[1].picturelist[2] + achtervoegsel;
+                Visible12 = true;
+            }
+            if (aantalfiguren > 3)
+            {
+                Figur13 = basis + playground.Cards[1].picturelist[3] + achtervoegsel;
+                Visible13 = true;
+            }
+            if (aantalfiguren > 4)
+            {
+                Figur14 = basis + playground.Cards[1].picturelist[4] + achtervoegsel;
+                Visible14 = true;
+            }
+            if (aantalfiguren > 5)
+            {
+                Figur15 = basis + playground.Cards[1].picturelist[5] + achtervoegsel;
+                Visible15 = true;
+            }
+            if (aantalfiguren > 6)
+            {
+                Figur16 = basis + playground.Cards[1].picturelist[6] + achtervoegsel;
+                Visible16 = true;
+            }
+            if (aantalfiguren > 7)
+            {
+                Figur17 = basis + playground.Cards[1].picturelist[7] + achtervoegsel;
+                Visible17 = true;
+            }
+            if (aantalfiguren > 8)
+            {
+                Figur18 = basis + playground.Cards[1].picturelist[8] + achtervoegsel;
+                Visible18 = true;
+            }
+          
 
         }
         #endregion
