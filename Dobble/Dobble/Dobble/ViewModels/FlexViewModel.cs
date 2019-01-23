@@ -726,55 +726,13 @@ namespace Dobble.ViewModels
         }
         #endregion
         #region Speelveld bepalen figuren toevoegen
-        public Playground MakePlayField(int cards, int figurs)
-        {
-            List<int> figuren = new List<int>();
-            for (int i= 1; i <= 57; i++)
-            {
-                figuren.Add(i);
-            }
-            Playground playground = new Playground();
-            playground.Cards = new List<Card> { };
-            Random rnd = new Random();
-            // een van de 57 figuurtjes
-            int oplos = rnd.Next(0, figuren.Count() );
-            int oplossing = figuren[oplos];
-            figuren.RemoveAt(oplos);
-            while (cards > 0 )
-            {
-                var lijst = new List<string>();
-                lijst.Add(oplossing.ToString());
-                for (int i= 0; i < figurs - 1; i++)
-                {
-                    int toevoeg = rnd.Next(0, figuren.Count()  );
-                    int toevoegen = figuren[toevoeg];
-                    lijst.Add(toevoegen.ToString());
-                    figuren.RemoveAt(toevoeg);
-                }
-                // shuffel lijst
-                var ShuffelLijst = new List<string>();
-                while (lijst.Count != 0)
-                {
-                    var index = rnd.Next(0, lijst.Count);
-                    ShuffelLijst.Add(lijst[index]);
-                    lijst.RemoveAt(index);
-                }
-
-
-                Card card = new Card { picturelist = ShuffelLijst };
-                playground.Cards.Add( card);  
-
-
-                cards--;
-            }
-            return playground;
-        }
+      
         public void GetFigInfo()
         {
 
-         //  playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random) };
-          
-            playground = MakePlayField(2, aantalfiguren);
+            //  playground.Cards = new List<Card> { cards.lijst.ElementAt(card1random), cards.lijst.ElementAt(card2random) };
+            var makeplayground = new MakePlayGround();
+            playground = makeplayground.MakePlayField(2, aantalfiguren);
 
 
             string basis = Device.RuntimePlatform == Device.Android ? "a" : "Images/a";
