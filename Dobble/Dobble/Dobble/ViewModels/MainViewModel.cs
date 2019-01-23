@@ -166,7 +166,7 @@ namespace Dobble.ViewModels
 
         public ICommand StartGameCommand { get; private set; }
         public ICommand FlexCommand { get; private set; }
-        
+        public ICommand TwoCommand { get; private set; }
 
 
         #region MainViewModel 
@@ -175,6 +175,7 @@ namespace Dobble.ViewModels
             
             StartGameCommand = new Command(GamePage);
             FlexCommand = new Command(FlexGame);
+            TwoCommand = new Command(TwoPlay);
             try
             {
                 var bestand = new Bestand();
@@ -194,7 +195,7 @@ namespace Dobble.ViewModels
         #region gamepage
         private async void GamePage()
         {
-            Globals.TeScore = 1000;
+            Globals.TeScore = 1500;
             Globals.aantal_juist = 0;
             Globals.aantal_pogingen = 0;
             Globals.TeScoren = 0;
@@ -212,6 +213,19 @@ namespace Dobble.ViewModels
             Globals.TeScoren = 0;
             Globals.Totaalscore = 0;
             await CoreMethods.PushPageModel<FlexViewModel>(true);
+        }
+        #endregion
+        #region Flexgame poging om ultieme flex ervaring te ondervinden
+        private async void TwoPlay()
+        {
+            Globals.Level = Level;
+            Globals.TeScore = 1500;
+            Globals.aantal_juist = 0;
+            Globals.aantal_pogingen = 0;
+            Globals.TeScoren = 0;
+            Globals.Totaalscore = 0;
+            
+            await CoreMethods.PushPageModel<TwoViewModel>(true);
         }
         #endregion
 

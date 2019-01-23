@@ -73,6 +73,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\TwoPage.xaml.cs">
+      <DependentUpon>TwoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\FlexPage.xaml.cs">
       <DependentUpon>FlexPage.xaml</DependentUpon>
     </Compile>
