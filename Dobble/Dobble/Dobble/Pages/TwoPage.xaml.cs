@@ -11,89 +11,68 @@ namespace Dobble.Pages
 	{
 		public TwoPage ()
 		{
-            Globals.TeScoren = 1500;
-            Globals.TeScore = 1500;
+            var makeplayground = new MakePlayGround();
+            var playground = makeplayground.MakePlayField(2, Globals.Level + 2);
+            string basis = Device.RuntimePlatform == Device.Android ? "a" : "Images/a";
+            string achtervoegsel = Device.RuntimePlatform == Device.Android ? ".png" : ".jpg";
+
             Grid grid = new Grid
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 RowDefinitions =
                 {
-                    new RowDefinition { Height = GridLength.Auto },
-                    new RowDefinition { Height = GridLength.Auto },
-                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) }
+                    new RowDefinition { Height = 40},
+                    new RowDefinition { Height = 40},
+                    new RowDefinition { Height = 40 },
+                     new RowDefinition { Height = 40 },
+                    new RowDefinition { Height = 40},
+                    new RowDefinition { Height = 40},
+                     new RowDefinition { Height = 40},
+                    new RowDefinition { Height = 40},
+                    new RowDefinition { Height = 40 }
                 },
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = GridLength.Auto },
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(100, GridUnitType.Absolute) }
+                    new ColumnDefinition { Width = 40 },
+                    new ColumnDefinition { Width = 40 },
+                    new ColumnDefinition { Width = 40 }
                 }
             };
-
-            grid.Children.Add(new Label
+            int n = 0;
+            int rij = 0;
+            int col = 0;
+            do
             {
-                Text = "Grid",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
-                HorizontalOptions = LayoutOptions.Center
-            }, 0, 3, 0, 1);
+                var Figuur = basis + playground.Cards[0].picturelist[n] + achtervoegsel;
+                
+                grid.Children.Add(new ImageButton { HeightRequest = 20, IsVisible = true, Source = Figuur }, rij, col);
+                rij++;
+                if (rij > 2)
+                {
+                    rij = 0;
+                    col++;
+                }
+                n++;
+            } while (n < playground.Cards[0].picturelist.Count);
 
-            grid.Children.Add(new Label
+             n = 0;
+             rij = 0;
+             col = 5;
+            do
             {
-                Text = "Autosized cell",
-                TextColor = Color.White,
-                BackgroundColor = Color.Blue
-            }, 0, 1);
+                var Figuur = basis + playground.Cards[1].picturelist[n] + achtervoegsel;
 
-            grid.Children.Add(new BoxView
-            {
-                Color = Color.Silver,
-                HeightRequest = 0
-            }, 1, 1);
+                grid.Children.Add(new ImageButton { HeightRequest = 20, IsVisible = true, Source = Figuur }, rij, col);
+                rij++;
+                if (rij > 2)
+                {
+                    rij = 0;
+                    col++;
+                }
+                n++;
+            } while (n < playground.Cards[0].picturelist.Count);
 
-            grid.Children.Add(new BoxView
-            {
-                Color = Color.Teal
-            }, 0, 2);
 
-            grid.Children.Add(new Label
-            {
-                Text = "Leftover space",
-                TextColor = Color.Purple,
-                BackgroundColor = Color.Aqua,
-                HorizontalTextAlignment = TextAlignment.Center,
-                VerticalTextAlignment = TextAlignment.Center,
-            }, 1, 2);
-
-            grid.Children.Add(new Label
-            {
-                Text = "Span two rows (or more if you want)",
-                TextColor = Color.Yellow,
-                BackgroundColor = Color.Navy,
-                HorizontalTextAlignment = TextAlignment.Center,
-                VerticalTextAlignment = TextAlignment.Center
-            }, 2, 3, 1, 3);
-
-            grid.Children.Add(new Label
-            {
-                Text = "Span 2 columns",
-                TextColor = Color.Blue,
-                BackgroundColor = Color.Yellow,
-                HorizontalTextAlignment = TextAlignment.Center,
-                VerticalTextAlignment = TextAlignment.Center
-            }, 0, 2, 3, 4);
-
-            grid.Children.Add(new Label
-            {
-                Text = "Fixed 100x100",
-                TextColor = Color.Aqua,
-                BackgroundColor = Color.Red,
-                HorizontalTextAlignment = TextAlignment.Center,
-                VerticalTextAlignment = TextAlignment.Center
-            }, 2, 3);
-
-            // Accomodate iPhone status bar.
-            this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
 
             // Build the page.
             this.Content = grid;
@@ -103,7 +82,7 @@ namespace Dobble.Pages
             {
                 if (this.Width > 0)
                {
-
+                   
                     var grote = this.Height / 11;
 
             //        Rij0.Height = grote * 0.9;
