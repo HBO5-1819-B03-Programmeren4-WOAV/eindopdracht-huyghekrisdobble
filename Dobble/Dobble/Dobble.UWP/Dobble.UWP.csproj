@@ -205,6 +205,7 @@
     <Content Include="Images\a7.jpg" />
     <Content Include="Images\a8.jpg" />
     <Content Include="Images\a9.jpg" />
+    <EmbeddedResource Include="Images\aCircle.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

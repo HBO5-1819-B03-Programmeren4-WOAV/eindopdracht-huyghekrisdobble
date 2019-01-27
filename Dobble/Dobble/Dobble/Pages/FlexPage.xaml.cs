@@ -21,7 +21,7 @@ namespace Dobble.Pages
                 {
                    
                     var grote = this.Height / 11;
-
+                    
                     Rij0.Height = grote * 0.9;
                     Rij1.Height = grote;
                     Rij2.Height = grote;

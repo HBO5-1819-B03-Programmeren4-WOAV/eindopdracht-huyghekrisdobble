@@ -6,7 +6,7 @@
              x:Class="Dobble.Pages.TwoPage"
              
              xmlns:extensions="clr-namespace:Dobble.Extensions"
-             Title="{Binding Score}">
+             Title="{Binding Score}" x:Name="Score">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand">
             

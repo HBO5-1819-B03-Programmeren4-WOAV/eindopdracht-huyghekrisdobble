@@ -1,6 +1,7 @@
 ﻿using Dobble.Domain;
 using Dobble.hulpclasse;
 using System;
+using System.Reflection;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,7 +26,7 @@ namespace Dobble.Pages
         {
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             double schermhoogte = Device.RuntimePlatform == Device.Android ? mainDisplayInfo.Height / 3 : mainDisplayInfo.Height;
-
+          
 
 
             var hoogte = schermhoogte / 16;
@@ -67,7 +68,7 @@ namespace Dobble.Pages
                 do
                 {
                     var Figuur = basis + playground.Cards[0].picturelist[n] + achtervoegsel;
-                    var imageButton = new ImageButton {  Source = Figuur };
+                    var imageButton = new ImageButton { Source = Figuur };
                     imageButton.Clicked += Player1;
                     grid.Children.Add(imageButton, rij, col);
                     rij++;
@@ -85,7 +86,7 @@ namespace Dobble.Pages
                 do
                 {
                     var Figuur = basis + playground.Cards[1].picturelist[n] + achtervoegsel;
-                    var imageButton = new ImageButton {  Source = Figuur };
+                    var imageButton = new ImageButton { Source = Figuur };
                     imageButton.Clicked += Player2;
                     grid.Children.Add(imageButton, rij, col);
                     rij++;
@@ -97,7 +98,7 @@ namespace Dobble.Pages
                     n++;
                 } while (n < playground.Cards[0].picturelist.Count);
 
-
+                          
 
                 // Build the page.
                 this.Content = grid;
@@ -121,6 +122,9 @@ namespace Dobble.Pages
                 var gedrukt = btn.Source.ToString();
                 int len = gedrukt.Length;
                 gedrukt = gedrukt.Substring(bas, len - bas - acht);
+                // Score.Title
+                
+                
 
                 Zoekoplossing zoekoplossing = new Zoekoplossing();
                 var oplossing = zoekoplossing.Oplossing(playground);
