@@ -1,7 +1,7 @@
 ﻿using Dobble.Domain;
 using Dobble.hulpclasse;
 using System;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,10 +14,14 @@ namespace Dobble.Pages
         static string achtervoegsel = Device.RuntimePlatform == Device.Android ? ".png" : ".jpg";
         public int bas = basis.Length + 6;
         public int acht = achtervoegsel.Length;
+       
+
         MakePlayGround makeplayground = new MakePlayGround();
        
         public TwoPage ()
 		{
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var hoogte = mainDisplayInfo.Height/12;
             var makeplayground = new MakePlayGround();
             var playground = makeplayground.MakePlayField(2, Globals.Level + 2);
             raster();
@@ -29,28 +33,29 @@ namespace Dobble.Pages
                 Grid grid = new Grid
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.Center,
                     RowDefinitions =
                 {
-                    new RowDefinition { Height = 40},
-                    new RowDefinition { Height = 40},
-                    new RowDefinition { Height = 40 },
-                     new RowDefinition { Height = 40 },
-                    new RowDefinition { Height = 40},
-                    new RowDefinition { Height = 40},
-                     new RowDefinition { Height = 40},
-                    new RowDefinition { Height = 40},
-                    new RowDefinition { Height = 40 }
+                    new RowDefinition { Height = hoogte/4},
+                    new RowDefinition { Height = hoogte},
+                    new RowDefinition { Height = hoogte},
+                     new RowDefinition { Height = hoogte },
+                    new RowDefinition { Height = hoogte/3},
+                    new RowDefinition { Height = hoogte},
+                     new RowDefinition { Height = hoogte},
+                    new RowDefinition { Height = hoogte},
+                    new RowDefinition { Height = hoogte/4}
                 },
                     ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = 40 },
-                    new ColumnDefinition { Width = 40 },
-                    new ColumnDefinition { Width = 40 }
+                    new ColumnDefinition { Width = hoogte },
+                    new ColumnDefinition { Width = hoogte },
+                    new ColumnDefinition { Width = hoogte }
                 }
                 };
                 int n = 0;
                 int rij = 0;
-                int col = 0;
+                int col = 1;
                 do
                 {
                     var Figuur = basis + playground.Cards[0].picturelist[n] + achtervoegsel;
