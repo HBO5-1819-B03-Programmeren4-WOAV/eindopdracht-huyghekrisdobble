@@ -26,9 +26,8 @@ namespace Dobble.Pages
         {
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             double schermhoogte = Device.RuntimePlatform == Device.Android ? mainDisplayInfo.Height / 3 : mainDisplayInfo.Height;
-          
-
-
+            int player1 = 0;
+            int player2 = 0;
             var hoogte = schermhoogte / 16;
             var makeplayground = new MakePlayGround();
             var playground = makeplayground.MakePlayField(2, Globals.Level + 2);
@@ -62,6 +61,8 @@ namespace Dobble.Pages
                     new ColumnDefinition { Width = hoogte }
                 }
                 };
+                var scoreLabel = new Label { Text = player1.ToString() + "/" + player2.ToString() };
+                grid.Children.Add(scoreLabel, 0, 4);
                 int n = 0;
                 int rij = 0;
                 int col = 1;
@@ -128,9 +129,46 @@ namespace Dobble.Pages
 
                 Zoekoplossing zoekoplossing = new Zoekoplossing();
                 var oplossing = zoekoplossing.Oplossing(playground);
-                DisplayAlert(player, oplossing, gedrukt);
+                // DisplayAlert(player, oplossing, gedrukt);
+                if (player == "player1")
+                {
+                    // player1 = gedrukt == oplossing ? player1++ : player1--;
+                    if (gedrukt == oplossing)
+                    {
+                        player1++;
+                    }
+                    else
+                    {
+                        player1--;
+                    }
+                }
+                else
+                {
+                    if (gedrukt == oplossing)
+                    {
+                        player2++;
+                    }
+                    else
+                    {
+                        player2--;
+                    }
+                }
                 playground = makeplayground.MakePlayField(2, Globals.Level + 2);
-                raster();
+                if (player1 > 9 || player2 > 9)
+                {
+                    var scoreLabel = new Label { Text = player1.ToString() + "/" + player2.ToString() };
+                    //grid.Children.Add(scoreLabel, 2, 3);
+
+                    DisplayAlert("Score", player1.ToString() + "/" + player2.ToString(), "ok");
+                    player1 = 0;
+                    player2 = 0;
+                }
+                else
+                {
+                    raster();
+                }
+                
+
             }
 
 
