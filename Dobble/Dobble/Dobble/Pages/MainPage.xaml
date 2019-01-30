@@ -31,8 +31,10 @@
 
             </Grid>
             <!--<ImageButton Margin="20" Source="{extensions:ImageResource Dobble.Images.play.png}" HeightRequest="80" WidthRequest="80" Command="{Binding StartGameCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />-->
-            <ImageButton Margin="20" Source="{extensions:ImageResource Dobble.Images.play.png}" HeightRequest="80" WidthRequest="80" Command="{Binding FlexCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
-            <ImageButton Margin="20" Source="{extensions:ImageResource Dobble.Images.play.png}" HeightRequest="80" WidthRequest="80" Command="{Binding TwoCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Grid>
+            <ImageButton  Source="{extensions:ImageResource Dobble.Images.play.png}" HeightRequest="80"  Command="{Binding FlexCommand}" Grid.Row="0" Grid.Column="0"  />
+            <ImageButton  Source="{extensions:ImageResource Dobble.Images.two.png}" HeightRequest="80"  Command="{Binding TwoCommand}" Grid.Row="0" Grid.Column="1"  />
+            </Grid>
             <Picker Title="Select Level" SelectedIndex="{Binding Level, Mode=TwoWay}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">

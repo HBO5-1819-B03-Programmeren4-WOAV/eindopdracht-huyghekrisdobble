@@ -1,6 +1,7 @@
 ﻿using Dobble.Domain;
 using Dobble.hulpclasse;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -28,17 +29,24 @@ namespace Dobble.Pages
             double schermhoogte = Device.RuntimePlatform == Device.Android ? mainDisplayInfo.Height / 3 : mainDisplayInfo.Height;
             int player1 = 0;
             int player2 = 0;
+            
             var hoogte = schermhoogte / 16;
             var makeplayground = new MakePlayGround();
             var playground = makeplayground.MakePlayField(2, Globals.Level + 2);
             raster();
             void raster()
             {
+                var rotaties = new List<int>();
+                rotaties.Add(0);
+                rotaties.Add(90);
+                rotaties.Add(-90);
+                rotaties.Add(180);
+                Random rnd = new Random();
 
 
 
-                Grid grid = new Grid
-                {
+
+                Grid grid = new Grid { 
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     HorizontalOptions = LayoutOptions.Center,
                     RowDefinitions =
@@ -61,15 +69,16 @@ namespace Dobble.Pages
                     new ColumnDefinition { Width = hoogte }
                 }
                 };
-                var scoreLabel = new Label { Text = player1.ToString() + "/" + player2.ToString() };
-                grid.Children.Add(scoreLabel, 0, 4);
+                
+               
+                
                 int n = 0;
                 int rij = 0;
                 int col = 1;
                 do
                 {
                     var Figuur = basis + playground.Cards[0].picturelist[n] + achtervoegsel;
-                    var imageButton = new ImageButton { Source = Figuur };
+                    var imageButton = new ImageButton { Source = Figuur, Rotation = rotaties[rnd.Next(0, 4)] };
                     imageButton.Clicked += Player1;
                     grid.Children.Add(imageButton, rij, col);
                     rij++;
@@ -81,13 +90,20 @@ namespace Dobble.Pages
                     n++;
                 } while (n < playground.Cards[0].picturelist.Count);
 
+                var scoreLabelplayer1 = new Label { HorizontalOptions = LayoutOptions.Center, Text = player1.ToString(), FontSize = hoogte / 2, Rotation = 180 };
+      
+                grid.Children.Add(scoreLabelplayer1, 1, 0);
+        
+                var scoreLabelplayer2 = new Label { HorizontalOptions = LayoutOptions.Center, Text = player2.ToString(), FontSize = hoogte / 2, Rotation = 0 };
+                grid.Children.Add(scoreLabelplayer2, 1, 8);
+                            
                 n = 0;
                 rij = 0;
                 col = 5;
                 do
                 {
                     var Figuur = basis + playground.Cards[1].picturelist[n] + achtervoegsel;
-                    var imageButton = new ImageButton { Source = Figuur };
+                    var imageButton = new ImageButton { Source = Figuur, Rotation = rotaties[rnd.Next(0, 4)] };
                     imageButton.Clicked += Player2;
                     grid.Children.Add(imageButton, rij, col);
                     rij++;
@@ -123,10 +139,7 @@ namespace Dobble.Pages
                 var gedrukt = btn.Source.ToString();
                 int len = gedrukt.Length;
                 gedrukt = gedrukt.Substring(bas, len - bas - acht);
-                // Score.Title
                 
-                
-
                 Zoekoplossing zoekoplossing = new Zoekoplossing();
                 var oplossing = zoekoplossing.Oplossing(playground);
                 // DisplayAlert(player, oplossing, gedrukt);
@@ -141,7 +154,7 @@ namespace Dobble.Pages
                 playground = makeplayground.MakePlayField(2, Globals.Level + 2);
                 if (player1 > 9 || player2 > 9)
                 {
-                    string antwoordstring = (player1 > player2) ? "Player1 won the game:" + player1.ToString() + "/" + player2.ToString() : "Player2 won the game:" + player1.ToString() + "/" + player2.ToString();
+                    string antwoordstring = (player1 > player2) ? "Player 1 won the game:" + player1.ToString() + "/" + player2.ToString() : "Player 2 won the game:" + player1.ToString() + "/" + player2.ToString();
                     DisplayAlert("Score", antwoordstring, "ok");
                     player1 = 0;
                     player2 = 0;

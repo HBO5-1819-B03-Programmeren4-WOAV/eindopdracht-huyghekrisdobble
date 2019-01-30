@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Dobble.hulpclasse
 {
-    class MakePlayGround
+    public class MakePlayGround
     {
         public Playground MakePlayField(int cards, int figurs)
         {

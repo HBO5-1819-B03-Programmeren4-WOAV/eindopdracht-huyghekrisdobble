@@ -66,6 +66,34 @@ namespace TestDobble
             Assert.Equal(uitput, actual);
 
         }
+
+        // test bij playground maken dat er altijd een oplossing te vinden is.
+        [Fact]
+        public void playgroundtesten()
+        {
+            bool actual = true;
+            MakePlayGround makeplayground = new MakePlayGround();
+            int aantalkaartjes = 2;
+            Random rnd = new Random();
+            int n = 0;
+            do
+            {
+                int aantalfiguurtjes = rnd.Next(2, 10);
+                Playground testveld = makeplayground.MakePlayField(aantalkaartjes, aantalfiguurtjes);
+                var oplos = new Zoekoplossing();
+                string oplossing = oplos.Oplossing(testveld);
+                if (oplossing == "Fout")
+                {
+                    actual = false;
+                }
+                Assert.Equal(aantalfiguurtjes.ToString(), testveld.Cards[0].picturelist.Count.ToString());
+                Assert.Equal(aantalfiguurtjes.ToString(), testveld.Cards[1].picturelist.Count.ToString());
+                Assert.Equal(aantalkaartjes.ToString(), testveld.Cards.Count.ToString());
+                n++;
+            } while (n < 10000);
+            Assert.True(actual);
+          
+        }
            
   
     }
