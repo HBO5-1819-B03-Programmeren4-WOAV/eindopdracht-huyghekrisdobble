@@ -132,34 +132,17 @@ namespace Dobble.Pages
                 // DisplayAlert(player, oplossing, gedrukt);
                 if (player == "player1")
                 {
-                    // player1 = gedrukt == oplossing ? player1++ : player1--;
-                    if (gedrukt == oplossing)
-                    {
-                        player1++;
-                    }
-                    else
-                    {
-                        player1--;
-                    }
+                    player1 = (gedrukt != oplossing) ? player1 - 1 : player1 + 1; 
                 }
                 else
                 {
-                    if (gedrukt == oplossing)
-                    {
-                        player2++;
-                    }
-                    else
-                    {
-                        player2--;
-                    }
+                    player2 = (gedrukt != oplossing) ? player2 - 1 : player2 + 1;
                 }
                 playground = makeplayground.MakePlayField(2, Globals.Level + 2);
                 if (player1 > 9 || player2 > 9)
                 {
-                    var scoreLabel = new Label { Text = player1.ToString() + "/" + player2.ToString() };
-                    //grid.Children.Add(scoreLabel, 2, 3);
-
-                    DisplayAlert("Score", player1.ToString() + "/" + player2.ToString(), "ok");
+                    string antwoordstring = (player1 > player2) ? "Player1 won the game:" + player1.ToString() + "/" + player2.ToString() : "Player2 won the game:" + player1.ToString() + "/" + player2.ToString();
+                    DisplayAlert("Score", antwoordstring, "ok");
                     player1 = 0;
                     player2 = 0;
                 }
