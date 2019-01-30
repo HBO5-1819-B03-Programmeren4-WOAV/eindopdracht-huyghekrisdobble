@@ -67,7 +67,10 @@ namespace TestDobble
 
         }
 
-        // test bij playground maken dat er altijd een oplossing te vinden is.
+        // test  playground 
+        // test dat de grote van de kaartjes zo groot zijn als gevraagd
+        // test het aantal kaartjes dan gevraagd
+        // test dat er een oplossing uit komt bij de 2 kaartjes te vergelijken
         [Fact]
         public void playgroundtesten()
         {
@@ -86,13 +89,34 @@ namespace TestDobble
                 {
                     actual = false;
                 }
-                Assert.Equal(aantalfiguurtjes.ToString(), testveld.Cards[0].picturelist.Count.ToString());
+               Assert.Equal(aantalfiguurtjes.ToString(), testveld.Cards[0].picturelist.Count.ToString());
                 Assert.Equal(aantalfiguurtjes.ToString(), testveld.Cards[1].picturelist.Count.ToString());
                 Assert.Equal(aantalkaartjes.ToString(), testveld.Cards.Count.ToString());
                 n++;
             } while (n < 10000);
             Assert.True(actual);
           
+        }
+        // test van zoekoplossing.antwoord deze heeft input van oplossing en het beeldje dat je heb aangeklikt
+        // test dat aantalpogingen stijgt ook al is het juist of fout
+        // test of het aantaljuist stijgt als het juist is en niet als het fout is
+        [Fact]
+        public void antwoorden()
+        {
+
+            int aantalpogingen = Globals.aantal_pogingen;
+            int aantaljuist = Globals.aantal_juist;
+            Zoekoplossing zoekoplossing = new Zoekoplossing();
+            zoekoplossing.Antwoord("1", "1");
+            aantalpogingen++;
+            aantaljuist++;
+            Assert.Equal(aantalpogingen.ToString(), Globals.aantal_pogingen.ToString());
+            Assert.Equal(aantaljuist.ToString() , Globals.aantal_juist.ToString());
+            zoekoplossing.Antwoord("1", "5");
+            aantalpogingen++;
+            Assert.Equal(aantalpogingen.ToString(), Globals.aantal_pogingen.ToString());
+            Assert.Equal(aantaljuist.ToString(), Globals.aantal_juist.ToString());
+
         }
            
   

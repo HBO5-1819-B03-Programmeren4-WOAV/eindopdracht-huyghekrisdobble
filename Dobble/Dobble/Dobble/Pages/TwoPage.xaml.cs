@@ -34,6 +34,7 @@ namespace Dobble.Pages
             var makeplayground = new MakePlayGround();
             var playground = makeplayground.MakePlayField(2, Globals.Level + 2);
             raster();
+            #region raster
             void raster()
             {
                 var rotaties = new List<int>();
@@ -120,7 +121,7 @@ namespace Dobble.Pages
                 // Build the page.
                 this.Content = grid;
             }
-
+            #endregion
 
 
             void Player1(object sender, EventArgs e)
@@ -134,22 +135,32 @@ namespace Dobble.Pages
                 ImageButton btn = (ImageButton)sender;
                 spel(btn, "player2");
             }
+
+            #region spel
             void spel(ImageButton btn, string player)
             {
                 var gedrukt = btn.Source.ToString();
                 int len = gedrukt.Length;
                 gedrukt = gedrukt.Substring(bas, len - bas - acht);
+                var music = new Music();
                 
                 Zoekoplossing zoekoplossing = new Zoekoplossing();
                 var oplossing = zoekoplossing.Oplossing(playground);
                 // DisplayAlert(player, oplossing, gedrukt);
+                
+                if (Globals.Sound == true)
+                {
+                    if (gedrukt == oplossing) { music.play("Correct.mp3"); }
+                    else { music.play("Wrong.mp3"); };
+                }
+                
                 if (player == "player1")
                 {
-                    player1 = (gedrukt != oplossing) ? player1 - 1 : player1 + 1; 
+                    player1 = (gedrukt == oplossing) ? player1 + 1 : player1 - 1; 
                 }
                 else
                 {
-                    player2 = (gedrukt != oplossing) ? player2 - 1 : player2 + 1;
+                    player2 = (gedrukt == oplossing) ? player2 + 1 : player2 - 1;
                 }
                 playground = makeplayground.MakePlayField(2, Globals.Level + 2);
                 if (player1 > 9 || player2 > 9)
@@ -166,7 +177,7 @@ namespace Dobble.Pages
                 
 
             }
-
+            #endregion
 
 
         }

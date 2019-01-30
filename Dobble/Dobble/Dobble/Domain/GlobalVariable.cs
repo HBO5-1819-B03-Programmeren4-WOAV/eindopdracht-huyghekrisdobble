@@ -1,6 +1,6 @@
 ﻿namespace Dobble.hulpclasse
 {
-    static class Globals
+    public static class Globals
     {
         
         public static int aantal_pogingen { get; set; }
