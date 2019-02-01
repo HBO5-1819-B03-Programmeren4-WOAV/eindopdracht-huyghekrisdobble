@@ -7,25 +7,25 @@ using Xamarin.Forms.Xaml;
 namespace Dobble.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class GamePage : ContentPage
-	{
-		public GamePage ()
-		{
-           
+    public partial class GamePage : ContentPage
+    {
+        public GamePage()
+        {
+
             InitializeComponent();
             #region Sizechange
             SizeChanged += (object sender, EventArgs args) =>
             {
                 if (this.Width > 0)
                 {
-                   
+
                     var grote = this.Height / 11;
 
                     Rij0.Height = grote * 0.9;
                     Rij1.Height = grote;
                     Rij2.Height = grote;
                     Rij3.Height = grote;
-                    Rij4.Height = grote * 1.35;  
+                    Rij4.Height = grote * 1.35;
                     Rij5.Height = grote;
                     Rij6.Height = grote;
                     Rij7.Height = grote;
@@ -36,16 +36,16 @@ namespace Dobble.Pages
                     Col3.Width = grote;
                     Col4.Width = grote;
                 }
-                
+
             };
             #endregion
 
             #region Timer
             Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
-              
+
                 if (Globals.TeScoren > 0) Globals.TeScoren--;
-               
+
                 if (Globals.TeScore != 0)
                 {
                     Progres.Progress = 1 - (Globals.TeScoren / Globals.TeScore);
@@ -54,11 +54,12 @@ namespace Dobble.Pages
                 {
                     Progres.Progress = 1;
                 }
-               
-                               
+
+
                 return true;
             });
             #endregion
 
         }
     }
+}
