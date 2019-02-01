@@ -6,6 +6,7 @@ using Xamarin.Forms;
 namespace Dobble.hulpclasse
 {
     // methode om via signalR gegevens te pushen naar chathup hup die je dan dan uitlezen op webpagina http://localhost:56376
+    // basis voorbeeld van het internet naar mijn hand gezet
     public class SentPlayInfo 
     {
         public async Task<bool> PlayInfo()

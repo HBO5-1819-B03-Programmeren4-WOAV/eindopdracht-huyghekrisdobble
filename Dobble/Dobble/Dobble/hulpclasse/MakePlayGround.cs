@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+// classe om een speelveld op te bouwen met de kaartjes die je wenst en het aantal figuurtjes per kaart
+// op ieder kaartje staat hetzelfde gemeenschappelijk figuurtje
 namespace Dobble.hulpclasse
 {
     public class MakePlayGround

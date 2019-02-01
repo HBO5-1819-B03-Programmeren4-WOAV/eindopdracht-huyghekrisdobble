@@ -14,7 +14,7 @@ namespace Dobble.Pages
             Globals.TeScoren = 1500;
             Globals.TeScore = 1500;            
             InitializeComponent();
-           
+            #region sizechange
             SizeChanged += (object sender, EventArgs args) =>
             {
                 if (this.Width > 0)
@@ -39,6 +39,8 @@ namespace Dobble.Pages
                 }
                 
             };
+            #endregion
+            #region score bepalen zakt met de tijd 
             Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
               
@@ -56,7 +58,8 @@ namespace Dobble.Pages
                                
                 return true;
             });
+            #endregion
         }
-       
+
     }
 }

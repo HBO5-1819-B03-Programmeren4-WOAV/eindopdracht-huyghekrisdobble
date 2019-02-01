@@ -16,15 +16,15 @@ namespace Dobble.Pages
 		public MainPage ()
 		{
 			InitializeComponent ();
+            #region ververs de scores 
             Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
             {
-
-
                 AantalJuist.Text = Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString();
                 Score.Text =  Globals.Totaalscore.ToString();
                 MaxScore.Text = Globals.MaxScore.ToString();
                 return true;
             });
+            #endregion
             var bestand = new Bestand();
             int m = 0;
             try

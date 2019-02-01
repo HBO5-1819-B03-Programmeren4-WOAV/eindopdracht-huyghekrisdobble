@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace Dobble.hulpclasse
 {
-  
+    //zoekt de oplossing bij een speelveld van 2 kaartjes 
     public class Zoekoplossing 
     {
         // om oplossing te bepalen
@@ -35,7 +35,7 @@ namespace Dobble.hulpclasse
         }
         #endregion
         #region Antwoord beoordeeld het antwoord en vergelijkt het met de oplossing 
-        public void  Antwoord(String beeld, string oplossing)
+        public async void   Antwoord(String beeld, string oplossing)
         {
             //  string beeld = image.Source.ToString().Substring(6);
 
@@ -50,7 +50,7 @@ namespace Dobble.hulpclasse
 
             // Zend via signalR info naar iedereen maar enkel de webapplicatie leest de info,
             SentPlayInfo sentPlayInfo = new SentPlayInfo();
-            sentPlayInfo.PlayInfo();
+            await sentPlayInfo.PlayInfo();
             if (oplossing == beeld)
             {
                 //  antwoord = "Juist \nBinnen de tijd van \n" + span.ToString() ;

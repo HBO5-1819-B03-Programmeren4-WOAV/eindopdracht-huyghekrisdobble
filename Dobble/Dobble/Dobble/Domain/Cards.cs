@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+// deze versie was met een vaststaande lijst van kaartjes 
 
 namespace Dobble.Domain
 {

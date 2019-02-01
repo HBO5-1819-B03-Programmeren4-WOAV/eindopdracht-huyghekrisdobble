@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-
+// klasse gemaakt om mijn variabele weg te schrijven in txt files 
+// een beetje rechttoe recht aan maar werkt wel 
 namespace Dobble.hulpclasse
 {
     public class Bestand

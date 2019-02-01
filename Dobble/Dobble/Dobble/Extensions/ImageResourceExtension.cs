@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+// hulpextentie om embedded figuren weer te geven
 namespace Dobble.Extensions
 {
     [ContentProperty("Source")]
