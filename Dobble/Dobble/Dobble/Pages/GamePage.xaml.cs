@@ -13,7 +13,7 @@ namespace Dobble.Pages
 		{
            
             InitializeComponent();
-           
+            #region Sizechange
             SizeChanged += (object sender, EventArgs args) =>
             {
                 if (this.Width > 0)
@@ -38,6 +38,9 @@ namespace Dobble.Pages
                 }
                 
             };
+            #endregion
+
+            #region Timer
             Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
               
@@ -55,7 +58,7 @@ namespace Dobble.Pages
                                
                 return true;
             });
+            #endregion
+
         }
-       
     }
-}
