@@ -11,8 +11,7 @@ deze kan je bepalen door level te selecteren. Hierbij wordt alles alles via mode
 veel regel code maar is mvvm
 
 derde versie "twogame" deze versie is het mogelijk om met 2 te spelen deze kan ook zo flexible opgebouwd worden en wordt 
-on de fly opgebouwd vanuit codebehind 
-maar is dus niet niet mvvm 
+on de fly opgebouwd vanuit codebehind via messaging center terug wat meer mvvm
 
 Unittest verschillende classe
 geëxperimenteerd met signalr vanuit een basis voorbeeld op het internet. 

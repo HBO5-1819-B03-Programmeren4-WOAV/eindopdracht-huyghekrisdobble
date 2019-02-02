@@ -68,9 +68,8 @@ namespace Dobble.Pages
                     new ColumnDefinition { Width = hoogte }
                 }
                 };
-                
+
                
-                
                 int n = 0;
                 int rij = 0;
                 int col = 1;
