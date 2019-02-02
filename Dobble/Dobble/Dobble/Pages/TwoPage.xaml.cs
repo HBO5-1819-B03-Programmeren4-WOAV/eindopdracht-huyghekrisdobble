@@ -134,6 +134,7 @@ namespace Dobble.Pages
             {
                 ImageButton btn = (ImageButton)sender;
                 spel(btn, "player2");
+               
             }
 
             #region spel
