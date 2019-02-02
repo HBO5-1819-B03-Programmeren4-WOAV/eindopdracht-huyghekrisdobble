@@ -16,10 +16,21 @@ namespace Dobble.ViewModels
     {
         public TwoViewModel()
         {
-           
+       
+            MessagingCenter.Subscribe<TwoPage, string>(this, "muziek" , (sender, arg) => {
+                var music = new Music();
+                if (Globals.Sound == true)
+                {
+                    if (bool.Parse(arg) == true)
+                    { music.play("Correct.mp3"); }
+                    else { music.play("Wrong.mp3"); };
+                }
+            });
 
+
+           
         }
-        
+
 
 
     }

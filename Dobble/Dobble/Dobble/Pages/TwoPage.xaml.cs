@@ -148,12 +148,16 @@ namespace Dobble.Pages
                 Zoekoplossing zoekoplossing = new Zoekoplossing();
                 var oplossing = zoekoplossing.Oplossing(playground);
                 // DisplayAlert(player, oplossing, gedrukt);
-                
-                if (Globals.Sound == true)
-                {
-                    if (gedrukt == oplossing) { music.play("Correct.mp3"); }
-                    else { music.play("Wrong.mp3"); };
-                }
+                bool juist = (gedrukt == oplossing) ? true : false;
+
+                MessagingCenter.Send<TwoPage, string>(this, "muziek" , juist.ToString() );
+
+
+                //if (Globals.Sound == true)
+                //{
+                //    if (gedrukt == oplossing) { music.play("Correct.mp3"); }
+                //    else { music.play("Wrong.mp3"); };
+                //}
                 
                 if (player == "player1")
                 {
