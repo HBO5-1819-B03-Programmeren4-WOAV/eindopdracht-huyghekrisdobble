@@ -13,5 +13,7 @@
         public static bool Vibrate { get; set; }
         public static string Username { get; set; }
         public static int Level { get; set; }
+        public static int Player1 { get; set; }
+        public static int Player2 { get; set; }
     }
 }

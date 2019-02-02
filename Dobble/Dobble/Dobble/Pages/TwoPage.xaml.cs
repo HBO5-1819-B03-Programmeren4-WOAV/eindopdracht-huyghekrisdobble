@@ -16,8 +16,6 @@ namespace Dobble.Pages
         static string achtervoegsel = Device.RuntimePlatform == Device.Android ? ".png" : ".jpg";
         public int bas = basis.Length + 6;
         public int acht = achtervoegsel.Length;
-      
-      
         
 
 
@@ -27,8 +25,8 @@ namespace Dobble.Pages
         {
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             double schermhoogte = Device.RuntimePlatform == Device.Android ? mainDisplayInfo.Height / 3 : mainDisplayInfo.Height;
-            int player1 = 0;
-            int player2 = 0;
+            Globals.Player1 = 0;
+            Globals.Player2 = 0;
             
             var hoogte = schermhoogte / 16;
             var makeplayground = new MakePlayGround();
@@ -91,11 +89,11 @@ namespace Dobble.Pages
                     n++;
                 } while (n < playground.Cards[0].picturelist.Count);
 
-                var scoreLabelplayer1 = new Label { HorizontalOptions = LayoutOptions.Center, Text = player1.ToString(), FontSize = hoogte / 2, Rotation = 180 };
+                var scoreLabelplayer1 = new Label { HorizontalOptions = LayoutOptions.Center, Text = Globals.Player1.ToString(), FontSize = hoogte / 2, Rotation = 180 };
       
                 grid.Children.Add(scoreLabelplayer1, 1, 0);
         
-                var scoreLabelplayer2 = new Label { HorizontalOptions = LayoutOptions.Center, Text = player2.ToString(), FontSize = hoogte / 2, Rotation = 0 };
+                var scoreLabelplayer2 = new Label { HorizontalOptions = LayoutOptions.Center, Text = Globals.Player2.ToString(), FontSize = hoogte / 2, Rotation = 0 };
                 grid.Children.Add(scoreLabelplayer2, 1, 8);
                             
                 n = 0;
@@ -151,29 +149,18 @@ namespace Dobble.Pages
                 bool juist = (gedrukt == oplossing) ? true : false;
 
                 MessagingCenter.Send<TwoPage, string>(this, "muziek" , juist.ToString() );
+                MessagingCenter.Send<TwoPage, string>(this, player, juist.ToString());
 
+                         
+               
 
-                //if (Globals.Sound == true)
-                //{
-                //    if (gedrukt == oplossing) { music.play("Correct.mp3"); }
-                //    else { music.play("Wrong.mp3"); };
-                //}
-                
-                if (player == "player1")
-                {
-                    player1 = (gedrukt == oplossing) ? player1 + 1 : player1 - 1; 
-                }
-                else
-                {
-                    player2 = (gedrukt == oplossing) ? player2 + 1 : player2 - 1;
-                }
                 playground = makeplayground.MakePlayField(2, Globals.Level + 2);
-                if (player1 > 9 || player2 > 9)
+                if (Globals.Player1 > 9 || Globals.Player2 > 9)
                 {
-                    string antwoordstring = (player1 > player2) ? "Player 1 won the game:" + player1.ToString() + "/" + player2.ToString() : "Player 2 won the game:" + player1.ToString() + "/" + player2.ToString();
+                    string antwoordstring = (Globals.Player1 > Globals.Player2) ? "Player 1 won the game:" + Globals.Player1.ToString() + "/" + Globals.Player2.ToString() : "Player 2 won the game:" + Globals.Player1.ToString() + "/" + Globals.Player2.ToString();
                     DisplayAlert("Score", antwoordstring, "ok");
-                    player1 = 0;
-                    player2 = 0;
+                    Globals.Player1 = 0;
+                    Globals.Player2 = 0;
                 }
                 else
                 {

@@ -24,11 +24,19 @@ namespace Dobble.ViewModels
                     if (bool.Parse(arg) == true)
                     { music.play("Correct.mp3"); }
                     else { music.play("Wrong.mp3"); };
+                  
+                    
                 }
+            });
+            MessagingCenter.Subscribe<TwoPage, string>(this, "player1", (sender, arg) => {
+                Globals.Player1 = (bool.Parse(arg) == true) ? Globals.Player1 + 1 : Globals.Player1 - 1;
+            });
+            MessagingCenter.Subscribe<TwoPage, string>(this, "player2", (sender, arg) => {
+                Globals.Player2 = (bool.Parse(arg) == true) ? Globals.Player2 + 1 : Globals.Player2 - 1;
             });
 
 
-           
+
         }
 
 
