@@ -215,16 +215,10 @@ namespace Dobble.ViewModels
             await CoreMethods.PushPageModel<FlexViewModel>(true);
         }
         #endregion
-        #region Flexgame poging om ultieme flex ervaring te ondervinden
+        #region Two game alles in code behing on the fly maken van speelveld 
         private async void TwoPlay()
         {
-            Globals.Level = Level;
-            Globals.TeScore = 1500;
-            Globals.aantal_juist = 0;
-            Globals.aantal_pogingen = 0;
-            Globals.TeScoren = 0;
-            Globals.Totaalscore = 0;
-            
+                    
             await CoreMethods.PushPageModel<TwoViewModel>(true);
         }
         #endregion
