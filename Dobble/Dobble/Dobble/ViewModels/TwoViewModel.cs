@@ -24,8 +24,6 @@ namespace Dobble.ViewModels
                     if (bool.Parse(arg) == true)
                     { music.play("Correct.mp3"); }
                     else { music.play("Wrong.mp3"); };
-
-
                 }
             });
             MessagingCenter.Subscribe<TwoPage, string>(this, "player1", (sender, arg) => {
