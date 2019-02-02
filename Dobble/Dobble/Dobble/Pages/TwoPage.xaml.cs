@@ -150,24 +150,9 @@ namespace Dobble.Pages
 
                 MessagingCenter.Send<TwoPage, string>(this, "muziek" , juist.ToString() );
                 MessagingCenter.Send<TwoPage, string>(this, player, juist.ToString());
-
-                         
-               
-
+                  
                 playground = makeplayground.MakePlayField(2, Globals.Level + 2);
-                if (Globals.Player1 > 9 || Globals.Player2 > 9)
-                {
-                    string antwoordstring = (Globals.Player1 > Globals.Player2) ? "Player 1 won the game:" + Globals.Player1.ToString() + "/" + Globals.Player2.ToString() : "Player 2 won the game:" + Globals.Player1.ToString() + "/" + Globals.Player2.ToString();
-                    DisplayAlert("Score", antwoordstring, "ok");
-                    Globals.Player1 = 0;
-                    Globals.Player2 = 0;
-                }
-                else
-                {
-                    raster();
-                }
-                
-
+                raster();
             }
             #endregion
 
