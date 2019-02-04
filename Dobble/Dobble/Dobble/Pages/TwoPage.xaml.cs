@@ -68,8 +68,20 @@ namespace Dobble.Pages
                     new ColumnDefinition { Width = hoogte }
                 }
                 };
+                var embeddedImage = new Image { Source = ImageSource.FromResource("Dobble.Images.Vierkant.png"), HeightRequest = hoogte * 3, WidthRequest = hoogte * 3 };
+                embeddedImage.ScaleX = 1.5;
+                embeddedImage.ScaleY = 1.5;
+                grid.Children.Add(embeddedImage, 0, 1);
+                Grid.SetColumnSpan(embeddedImage, 3);
+                Grid.SetRowSpan(embeddedImage, 3);
 
-               
+                var embeddedImage2 = new Image { Source = ImageSource.FromResource("Dobble.Images.Vierkant.png"), HeightRequest = hoogte * 3, WidthRequest = hoogte * 3 };
+                embeddedImage2.ScaleX = 1.5;
+                embeddedImage2.ScaleY = 1.5;
+                grid.Children.Add(embeddedImage2, 0, 5);
+                Grid.SetColumnSpan(embeddedImage2, 3);
+                Grid.SetRowSpan(embeddedImage2, 3);
+
                 int n = 0;
                 int rij = 0;
                 int col = 1;
@@ -113,14 +125,18 @@ namespace Dobble.Pages
                     n++;
                 } while (n < playground.Cards[0].picturelist.Count);
 
-                          
+                
+                
+          //      < Image ScaleX = "1.8" ScaleY = "1.8" HorizontalOptions = "FillAndExpand" VerticalOptions = "FillAndExpand" Aspect = "AspectFill" Source = "{extensions:ImageResource Dobble.Images.Circle.png}" Grid.Row = "1" Grid.Column = "1" Grid.RowSpan = "3" Grid.ColumnSpan = "3" />
+                   
+           //                            < Image ScaleX = "1.8" ScaleY = "1.8" HorizontalOptions = "FillAndExpand" VerticalOptions = "FillAndExpand" Aspect = "AspectFill" Source = "{extensions:ImageResource Dobble.Images.Circle.png}" Grid.Row = "5" Grid.Column = "1" Grid.RowSpan = "3" Grid.ColumnSpan = "3" />
 
-                // Build the page.
-                this.Content = grid;
+
+                                                      // Build the page.
+                                                      this.Content = grid;
             }
             #endregion
-
-
+            
             void Player1(object sender, EventArgs e)
             {
                 ImageButton btn = (ImageButton)sender;
