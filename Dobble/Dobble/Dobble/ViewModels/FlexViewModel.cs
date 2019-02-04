@@ -739,7 +739,8 @@ namespace Dobble.ViewModels
             // string basis = "Images/a";
             string achtervoegsel = Device.RuntimePlatform == Device.Android ? ".png" : ".jpg";
 
-            Globals.TeScoren = Convert.ToInt64(Globals.TeScore * 0.8);
+            
+            Globals.TeScoren = Globals.TeScoren < 100 ? Globals.TeScoren : Convert.ToInt64(Globals.TeScore * 0.8);
             // nodig voor progressbar 
             Globals.TeScore = Globals.TeScoren;
 
