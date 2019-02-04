@@ -69,15 +69,15 @@ namespace Dobble.Pages
                 }
                 };
                 var embeddedImage = new Image { Source = ImageSource.FromResource("Dobble.Images.Vierkant.png"), HeightRequest = hoogte * 3, WidthRequest = hoogte * 3 };
-                embeddedImage.ScaleX = 1.5;
-                embeddedImage.ScaleY = 1.5;
+                embeddedImage.ScaleX = 1.4;
+                embeddedImage.ScaleY = 1.4;
                 grid.Children.Add(embeddedImage, 0, 1);
                 Grid.SetColumnSpan(embeddedImage, 3);
                 Grid.SetRowSpan(embeddedImage, 3);
 
                 var embeddedImage2 = new Image { Source = ImageSource.FromResource("Dobble.Images.Vierkant.png"), HeightRequest = hoogte * 3, WidthRequest = hoogte * 3 };
-                embeddedImage2.ScaleX = 1.5;
-                embeddedImage2.ScaleY = 1.5;
+                embeddedImage2.ScaleX = 1.4;
+                embeddedImage2.ScaleY = 1.4;
                 grid.Children.Add(embeddedImage2, 0, 5);
                 Grid.SetColumnSpan(embeddedImage2, 3);
                 Grid.SetRowSpan(embeddedImage2, 3);
