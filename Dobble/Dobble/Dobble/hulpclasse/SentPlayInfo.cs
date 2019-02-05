@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using Dobble.Domain;
+using Microsoft.AspNetCore.SignalR.Client;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -25,8 +27,19 @@ namespace Dobble.hulpclasse
                 DateTimeOffset local_offset = new DateTimeOffset(now);
                 DateTimeOffset utc_offset = local_offset.ToUniversalTime();
 
+                var data = new DataOverDracht();
+                data.tijd = utc_offset;
+                data.username = Globals.Username;
+                data.MaxScore = Globals.MaxScore;
+                data.Level = Globals.Level;
+                data.aantal_juist = Globals.aantal_juist;
+                data.aantal_pogingen = Globals.aantal_pogingen;
+                data.Totaalscore = Globals.Totaalscore;
 
-                string message = Globals.Username.ToString() + " GMT:" + utc_offset.ToString() + " De totaalscore is:" + Globals.Totaalscore.ToString() + " Aantal juist:" + Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString() + " MaxScoreOnDevice:" + Globals.MaxScore.ToString();
+
+                //string message = Globals.Username.ToString() + " GMT:" + utc_offset.ToString() + " De totaalscore is:" + Globals.Totaalscore.ToString() + " Aantal juist:" + Globals.aantal_juist.ToString() + "/" + Globals.aantal_pogingen.ToString() + " MaxScoreOnDevice:" + Globals.MaxScore.ToString();
+                string message = JsonConvert.SerializeObject(data);
+
                 if (verbinding == "Connected") 
                 {
                     await Connection.InvokeAsync("SendMessage", Device.RuntimePlatform , message);
