@@ -13,8 +13,10 @@ veel regel code maar is mvvm
 derde versie "twogame" deze versie is het mogelijk om met 2 te spelen deze kan ook zo flexible opgebouwd worden en wordt 
 on de fly opgebouwd vanuit codebehind via messaging center terug wat meer mvvm
 
+Via signalr kan ik meeluisteren tijdens het spel als er een een knop gedrukt wordt worden de beschikbare gegevens in een object opgestuurd via javascript terug omgezet naar nuttige data en weergegeven
+
 Unittest verschillende classe
-geëxperimenteerd met signalr vanuit een basis voorbeeld op het internet. 
+geÃ«xperimenteerd met signalr vanuit een basis voorbeeld op het internet. 
 al wat je drukt kan de ontvanger zien wat je aan het doen bent. 
 
 
