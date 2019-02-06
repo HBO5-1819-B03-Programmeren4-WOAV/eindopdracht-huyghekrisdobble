@@ -18,7 +18,7 @@ connection.on("ReceiveMessage", function (user, message) {
     document.getElementById("tijd").innerText = tijd;
     document.getElementById("user").innerText = username;
     document.getElementById("pogingen").innerText = aantal_juist + "/" + aantal_pogingen;
-
+     
 
    
 });
