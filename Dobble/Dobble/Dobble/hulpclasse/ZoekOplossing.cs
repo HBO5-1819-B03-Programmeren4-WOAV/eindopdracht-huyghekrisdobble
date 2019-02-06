@@ -50,6 +50,8 @@ namespace Dobble.hulpclasse
 
             // Zend via signalR info naar iedereen maar enkel de webapplicatie leest de info,
             SentPlayInfo sentPlayInfo = new SentPlayInfo();
+       
+            // door deze await werkt de unittest niet voor aantal++
             await sentPlayInfo.PlayInfo();
             if (oplossing == beeld)
             {

@@ -116,7 +116,8 @@ namespace TestDobble
             aantalpogingen++;
             aantaljuist++;
             Assert.Equal(aantalpogingen.ToString(), Globals.aantal_pogingen.ToString());
-      //      Assert.Equal(aantaljuist.ToString(), Globals.aantal_juist.ToString());
+            System.Threading.Thread.Sleep(5000); // moeten tussen steken om await op te vangen
+            Assert.Equal(aantaljuist.ToString(), Globals.aantal_juist.ToString());
 
         }
            
