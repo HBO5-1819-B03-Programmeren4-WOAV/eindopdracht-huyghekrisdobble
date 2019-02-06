@@ -12,9 +12,15 @@ connection.on("ReceiveMessage", function (user, message) {
     var Totaalscore = json.Totaalscore;
     var MaxScore = json.MaxScore;
     var Level = json.Level;
-    var encodedMsg = user + " " + tijd + " " + username + " " + aantal_pogingen + "/" + aantal_juist + " Totaalscore:" + Totaalscore + " MaxScore:" + MaxScore + " Level:" + Level;
+    var encodedMsg = user + " " + tijd + " " + username + " " + aantal_juist+ "/" + aantal_pogingen + " Totaalscore:" + Totaalscore + " MaxScore:" + MaxScore + " Level:" + Level;
     var li = document.createElement("li");
     li.textContent = encodedMsg; document.getElementById("messagesList").appendChild(li);
+    document.getElementById("tijd").innerText = tijd;
+    document.getElementById("user").innerText = username;
+    document.getElementById("pogingen").innerText = aantal_juist + "/" + aantal_pogingen;
+
+
+   
 });
 
 connection.start().catch(function (err) { return console.error(err.toString()); });
